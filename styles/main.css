@@ -7,3 +7,9 @@ html, body {
 #map {
     height: 100%;
 }
+.g-signin {
+    width:10%;
+    height:10%;
+
+    border: 2px solid black;
+}
