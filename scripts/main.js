@@ -172,21 +172,47 @@
     }
   ];
 
-  angular.module('Workshop', ['uiGmapgoogle-maps'])
-      .controller('mainController', mainController);
+  angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap'])
+      .controller('mainController', mainController)
+      .controller('DropdownCtrl', DropdownCtrl);
 
   function mainController($scope) {
     $scope.map = {
       center: {
-        latitude: 40.1451,
-        longitude: -99.6680
+        latitude: 54.379208,
+        longitude: 18.653333
       },
-      zoom: 4,
+      zoom: 12,
       bounds: {}
     };
     $scope.options = {
       scrollwheel: true
     };
+
+    dupa = monuments.map(function (item, index) {
+
+      return {
+        nazwa: item.name,
+        typ: item.typ,
+        adres: {
+          street: item.adres.street,
+          number: item.adres.number,
+          position: {
+            latitude: item.adres.position.lat,
+            longitude: item.adres.position.lng
+          }
+
+        },
+        about: item.about,
+        image: item.image,
+        WHstatus: item.WHstatus,
+        id: index
+
+
+      }
+
+    });
+
     var createRandomMarker = function(i, bounds, idKey) {
       var lat_min = bounds.southwest.latitude,
           lat_range = bounds.northeast.latitude - lat_min,
@@ -206,6 +232,7 @@
       };
       ret[idKey] = i;
       return ret;
+
     };
     $scope.randomMarkers = [];
     // Get the bounds from the map once it's loaded
@@ -218,9 +245,64 @@
         for (var i = 0; i < 50; i++) {
           markers.push(createRandomMarker(i, $scope.map.bounds))
         }
-        $scope.randomMarkers = markers;
+
+        $scope.randomMarkers = dupa;
+        debugger;
       }
     }, true);
+
+
+
+
+
+
+
+
   }
+
+
+
+
+
+  function DropdownCtrl($scope, $log) {
+    $scope.items = [
+      'The first choice!',
+      'And another choice for you.',
+      'but wait! A third!'
+    ];
+
+    $scope.status = {
+      isopen: false
+    };
+
+    $scope.toggled = function(open) {
+      $log.log('Dropdown is now: ', open);
+    };
+
+    $scope.toggleDropdown = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      $scope.status.isopen = !$scope.status.isopen;
+    };
+
+    $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
+    $scope.type = type;
+    function type (typ){
+      clearMarkers();
+      if(typ === 'wszystkie'){
+        return callback(monuments)
+      }
+      var kategorie = [];
+      monuments.forEach( function (value, index) {
+        monuments[index].typ === typ ? kategorie.push(monuments[index]): false
+      });
+      callback(kategorie);
+      console.log(kategorie)
+
+    }
+  }
+
+
+
 
 })();
