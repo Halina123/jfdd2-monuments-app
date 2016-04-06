@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-color: black;*/
+}
+
+.login {
+    position: absolute;
+    width:40%;
+    height: 50%;
+    top:25%;
+    left: 30%;
+    border: solid 2px black;
+    text-align: center;
+}
+.g-signin {
+}

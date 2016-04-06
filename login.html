@@ -3,18 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-signin-client_id" content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">
+  <!--<meta name="google-signin-client_id" content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">-->
   <title>Zabytki Gdańska API</title>
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="shortcut icon" href="images/icons/logoIcon.gif">
+  <link rel="stylesheet" href="styles/login.css">
+  <!--<link rel="stylesheet" href="styles/main.css">-->
 
-  <!-- Custom styles for this template -->
-  <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+  <link rel="shortcut icon" href="images/icons/logoIcon.gif">
 </head>
 <body>
+<p></p>
 <div class="login">
+  <p>Zaloguj sie za pomoca</p>
   <button class="g-signin"
           data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
           data-requestvisibleactions="http://schemas.google.com/AddActivity"
@@ -26,13 +27,10 @@
   </button>
 </div>
 
-<script src="scripts/main.js"></script>
 <script src="scripts/login.js"></script>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYYI8HA5T5YQyMnsO6Z4xWxzZqrfQFhgs&callback=initMap"
-        async defer></script>
+
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
