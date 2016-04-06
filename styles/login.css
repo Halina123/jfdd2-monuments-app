@@ -2,7 +2,9 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    /*background-color: black;*/
+    background: url('../images/zdjeciePowitalne.jpg') no-repeat;
+    background-size: cover;
+
 }
 
 .login {
@@ -14,5 +16,4 @@ html, body {
     border: solid 2px black;
     text-align: center;
 }
-.g-signin {
-}
+
