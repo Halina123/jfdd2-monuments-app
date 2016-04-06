@@ -174,7 +174,38 @@
 
   angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap'])
       .controller('mainController', mainController)
-      .controller('DropdownCtrl', DropdownCtrl);
+      .controller('ButtonsCtrl', function ($scope) {
+
+
+        $scope.checkModel = {
+          kosioly: false,
+          muzea: false,
+          pomniki: false,
+          wh: false
+        };
+
+        $scope.randomMarkers = [];
+        if ($scope.checkModel.kosioly === true){
+          dupa.foreach(function (item, index){
+            if (item.typ==='kościół'){
+              $scope.randomMarkers.push(item[index])
+            }
+          })
+        }
+        $scope.checkResults = [];
+
+        $scope.$watchCollection('checkModel', function () {
+          $scope.checkResults = [];
+          angular.forEach($scope.checkModel, function (value, key) {
+            if (value) {
+              $scope.checkResults.push(key);
+            }
+          });
+        });
+      });
+
+
+
 
   function mainController($scope) {
     $scope.map = {
@@ -188,6 +219,8 @@
     $scope.options = {
       scrollwheel: true
     };
+
+    console.log($scope.koscioly);
 
     dupa = monuments.map(function (item, index) {
 
@@ -213,50 +246,23 @@
 
     });
 
-    var createRandomMarker = function(i, bounds, idKey) {
-      var lat_min = bounds.southwest.latitude,
-          lat_range = bounds.northeast.latitude - lat_min,
-          lng_min = bounds.southwest.longitude,
-          lng_range = bounds.northeast.longitude - lng_min;
+    // $scope.closeClick = function() {
+    //   $scope.show = false;
+    // };
+    //
+    // $scope.windowCoords = {};
+    //
+    // $scope.onClick = function(marker, eventName, model) {
+    //   $scope.map.center.latitude = model.adres.position.latitude;
+    //   $scope.map.center.longitude = model.adres.position.longitude;
+    //   $scope.windowCoords.latitude = model.adres.position.latitude;
+    //   $scope.windowCoords.longitude = model.adres.position.longitude;
+    //   $scope.parkName = 'dfsdfsdfsdfsdfsdf';
+    //   $scope.show = true;
+    // };
 
-      if (idKey == null) {
-        idKey = "id";
-      }
-
-      var latitude = lat_min + (Math.random() * lat_range);
-      var longitude = lng_min + (Math.random() * lng_range);
-      var ret = {
-        latitude: latitude,
-        longitude: longitude,
-        title: 'm' + i
-      };
-      ret[idKey] = i;
-      return ret;
-
-    };
-    $scope.randomMarkers = [];
-    // Get the bounds from the map once it's loaded
-    $scope.$watch(function() {
-      return $scope.map.bounds;
-    }, function(nv, ov) {
-      // Only need to regenerate once
-      if (!ov.southwest && nv.southwest) {
-        var markers = [];
-        for (var i = 0; i < 50; i++) {
-          markers.push(createRandomMarker(i, $scope.map.bounds))
-        }
 
         $scope.randomMarkers = dupa;
-        debugger;
-      }
-    }, true);
-
-
-
-
-
-
-
 
   }
 

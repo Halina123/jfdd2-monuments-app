@@ -41,27 +41,23 @@
 </nav>
 
 <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
-  <ui-gmap-markers models="randomMarkers" coords="'adres.position'" icon="'icon'" type="'cluster'">
-  </ui-gmap-markers>
-</ui-gmap-google-map>
+  <ui-gmap-window show="show" coords='windowCoords' closeClick="closeClick()">
+    <div>{{parkName}}</div>
+  </ui-gmap-window>
 
-<div ng-controller="DropdownCtrl">
-  <div class="btn-group" uib-dropdown is-open="status.isopen">
-    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
-      Kategorie <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-      <li role="menuitem"><a href="#" >Kościoły</a></li>
-      <li role="menuitem"><a href="#" >Pomniki</a></li>
-      <li role="menuitem"><a href="#" >Muzea</a></li>
-      <li class="divider"></li>
-      <li role="menuitem"><a href="#" >Wszystkie</a></li>
-    </ul>
-  </div>
-  <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-    Single toggle
-  </button>
+  <ui-gmap-markers models="randomMarkers" coords="'adres.position'" icon="'icon'" type="'cluster'" click="onClick"></ui-gmap-markers>
+</ui-gmap-google-map>
+<div ng-controller="ButtonsCtrl">
+<div class="btn-group">
+  <label class="btn btn-primary" ng-model="checkModel.koscioly" uib-btn-checkbox>Left</label>
+  <label class="btn btn-primary" ng-model="checkModel.muzea" uib-btn-checkbox>Middle</label>
+  <label class="btn btn-primary" ng-model="checkModel.pomniki" uib-btn-checkbox>Right</label>
+  <label class="btn btn-primary" ng-model="checkModel.wh" uib-btn-checkbox>WH List</label>
+  <pre>Model: {{checkModel}}</pre>
+  <pre>Results: {{checkResults}}</pre>
 </div>
+</div>
+
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
