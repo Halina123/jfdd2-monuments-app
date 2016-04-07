@@ -14,12 +14,14 @@
   <link rel="shortcut icon" href="images/icons/logoIcon.gif">
 </head>
 <body>
-<!--<div id="my-signin2"></div>-->
+<!--<div id="my-signin2"><a href="index.html" onclick="onSuccess();">Sign In</a></div>-->
+<!--<a href="index.html" onclick="onSuccess();">Sign In</a>-->
 <!--<div class="g-signin2" data-width="600" data-height="200" data-longtitle="true">-->
 
 <div class="login">
   <p class="loginNapis">Zaloguj sie za pomoca</p>
-  <button class="g-signin"
+  <div class="gbutton">
+  <button class="g-signin" onclick="reDirect()"
           data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
           data-requestvisibleactions="http://schemas.google.com/AddActivity"
           data-clientId="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com"
@@ -28,6 +30,7 @@
           data-theme="blue"
           data-cookiepolicy="single_host_origin">
   </button>
+  </div>
   </div>
   <!--<script>(function(d, s, id) {-->
     <!--var js, fjs = d.getElementsByTagName(s)[0];-->
@@ -54,7 +57,6 @@
 <!--</div>-->
 <!--<div id="name"></div>-->
 <!--<script>startApp();</script>-->
-
 
 
 

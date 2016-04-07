@@ -15,5 +15,16 @@ html, body {
     left: 30%;
     border: solid 2px black;
     text-align: center;
+    background: white;
+    border-radius:50%;
+
+}
+.loginNapis {
+    margin-top:50px;
+    margin-bottom: 100px;
+    font-size: 20px;
+
+}
+.gbutton {
 }
 

@@ -2,15 +2,21 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
+  <meta name="google-signin-client_id" content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">
+
   <title>Zabytki Gdańska API</title>
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="shortcut icon" href="images/icons/logoIcon.gif">
+  <script src="https://apis.google.com/js/api:client.js"></script>
+
+
 </head>
 
 <body>
-
+<div id="my-signin2"></div>
+<a href="login.html" onclick="signOut();">Sign out</a>
 <div id="map"></div>
 
 
@@ -22,6 +28,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 </body>
 </html>
