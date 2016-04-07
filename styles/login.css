@@ -2,12 +2,20 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background: url('../images/zdjeciePowitalne.jpg') no-repeat;
-    background-size: cover;
+
 
 }
 
-.login {
+
+/*.loginNapis {*/
+    /*margin-top:50px;*/
+    /*margin-bottom: 100px;*/
+    /*font-size: 20px;*/
+
+/*}*/
+/*.gbutton {*/
+/*}*/
+.Lala {
     position: absolute;
     width:40%;
     height: 50%;
@@ -16,15 +24,6 @@ html, body {
     border: solid 2px black;
     text-align: center;
     background: white;
-    border-radius:50%;
-
-}
-.loginNapis {
-    margin-top:50px;
-    margin-bottom: 100px;
-    font-size: 20px;
-
-}
-.gbutton {
+    z-index:9;
 }
 
