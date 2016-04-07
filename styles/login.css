@@ -15,7 +15,7 @@ html, body {
 /*}*/
 /*.gbutton {*/
 /*}*/
-.Lala {
+#Lala {
     position: absolute;
     width:40%;
     height: 50%;
@@ -26,4 +26,6 @@ html, body {
     background: white;
     z-index:9;
 }
+
+
 

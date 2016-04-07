@@ -5,3 +5,10 @@ function initMap() {
     zoom: 12
   });
 }
+
+function hideF(target) {
+  document.getElementById(target).style.display = 'none';
+}
+
+
+

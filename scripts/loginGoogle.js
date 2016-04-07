@@ -1,6 +1,7 @@
 
 function onSuccess(googleUser) {
   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+  $('#Lala').hide();
   //location.reload();
   //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
 }
