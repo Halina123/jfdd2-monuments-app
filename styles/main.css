@@ -18,3 +18,5 @@ html, body {
     background-repeat: no-repeat;
     width: 150px;
 }
+
+.angular-google-map-container { height: 600px; }
