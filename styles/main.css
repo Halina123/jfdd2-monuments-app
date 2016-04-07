@@ -20,3 +20,25 @@ html, body {
 }
 
 .angular-google-map-container { height: 600px; }
+
+.infoWin {
+    width: 250px;
+    height: 150px;
+}
+
+.images {
+    width: 80px;
+    height: 100px;
+   }
+
+.icon{
+    margin: 10px 13px;
+}
+
+.textWindow {
+    text-align: center;
+}
+
+h5 {
+    text-align: center;
+}

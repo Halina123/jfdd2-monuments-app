@@ -11,8 +11,8 @@
           lng: 18.653242
         }
       },
-      about: 'krótki opis',
-      image: 'jakies zdjecie',
+      about: 'jakiś opis zabytku nr 1 ',
+      image: '1',
       WHstatus: true,
       ID: 'xxxx'
 
@@ -28,7 +28,7 @@
           lng: 18.648417
         }
       },
-      about: 'krótki opis',
+      about: 'jakiś opis zabytku nr 2 ',
       image: 'jakies zdjecie',
       WHstatus: true,
       ID: 'xxxx'
@@ -45,8 +45,8 @@
           lng: 18.667375
         }
       },
-      about: 'krótki opis',
-      image: 'jakies zdjecie',
+      about: 'jakiś opis zabytku nr 3 ',
+      image: '2',
       WHstatus: true,
       ID: 'xxxx'
 
@@ -62,8 +62,8 @@
           lng: 18.646837
         }
       },
-      about: 'krótki opis',
-      image: 'jakies zdjecie',
+      about: 'jakiś opis zabytku nr 4 ',
+      image: '3',
       WHstatus: false,
       ID: 'xxxx'
 
@@ -79,8 +79,8 @@
           lng: 18.649052
         }
       },
-      about: 'krótki opis',
-      image: 'jakies zdjecie',
+      about: 'jakiś opis zabytku nr 5 ',
+      image: '4',
       WHstatus: false,
       ID: 'xxxx'
 
@@ -96,8 +96,8 @@
           lng: 18.649480
         }
       },
-      about: 'krótki opis',
-      image: 'jakies zdjecie',
+      about: 'jakiś opis zabytku nr 6 ',
+      image: '5',
       WHstatus: false,
       ID: 'xxxx'
 
@@ -113,7 +113,7 @@
           lng: 18.651482
         }
       },
-      about: 'krótki opis',
+      about: 'jakiś opis zabytku nr 7 ',
       image: 'jakies zdjecie',
       WHstatus: true,
       ID: 'xxxx'
@@ -130,7 +130,7 @@
           lng: 18.591431
         }
       },
-      about: 'krótki opis',
+      about: 'jakiś opis zabytku nr 8 ',
       image: 'jakies zdjecie',
       WHstatus: false,
       ID: 'xxxx'
@@ -147,7 +147,7 @@
           lng: 18.659051
         }
       },
-      about: 'krótki opis',
+      about: 'jakiś opis zabytku nr 9 ',
       image: 'jakies zdjecie',
       WHstatus: true,
       ID: 'xxxx'
@@ -164,7 +164,7 @@
           lng: 18.651477
         }
       },
-      about: 'krótki opis',
+      about: 'jakiś opis zabytku nr 10 ',
       image: 'jakies zdjecie',
       WHstatus: false,
       ID: 'xxxx'
@@ -174,7 +174,7 @@
   var monumentsOK = monuments.map(function (item, index) {
 
     return {
-      nazwa: item.name,
+      nazwa: item.nazwa,
       typ: item.typ,
       adres: {
         street: item.adres.street,
@@ -247,9 +247,17 @@
     $scope.onClick = function (marker, eventName, model) {
       $scope.windowCoords.latitude = model.adres.position.latitude;
       $scope.windowCoords.longitude = model.adres.position.longitude;
-      $scope.parkName = 'dfsdfsdfsdfsdfsdf';
+      $scope.images = model.id;
       $scope.show = true;
+      $scope.nameMonuments = model.nazwa;
+      $scope.opis = model.about;
     };
+
+
+    $scope.lubie = function (){
+
+    }
+
 
   }
 
