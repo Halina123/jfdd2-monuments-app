@@ -2,7 +2,7 @@
   var monuments = [
     {
       nazwa: 'Bazylika Mariacka',
-      typ: 'kościół',
+      typ: 'kosciol',
       adres: {
         street: 'Reja',
         number: 4,
@@ -53,7 +53,7 @@
     },
     {
       nazwa: 'Kościół Świętej Trójcy',
-      typ: 'kościół',
+      typ: 'kosciol',
       adres: {
         street: 'Szymborskiej',
         number: 4,
@@ -104,7 +104,7 @@
     },
     {
       nazwa: 'Kościół św. Katarzyny',
-      typ: 'kościół',
+      typ: 'kosciol',
       adres: {
         street: 'Reja',
         number: 4,
@@ -155,7 +155,7 @@
     },
     {
       nazwa: 'Klasztor Ojców Dominikanów',
-      typ: 'kościół',
+      typ: 'kosciol',
       adres: {
         street: 'Mickiewicza',
         number: 2,
@@ -171,34 +171,54 @@
 
     }
   ];
+  var fMonumentsOK = []
+  monumentsOK = monuments.map(function (item, index) {
 
+    return {
+      nazwa: item.name,
+      typ: item.typ,
+      adres: {
+        street: item.adres.street,
+        number: item.adres.number,
+        position: {
+          latitude: item.adres.position.lat,
+          longitude: item.adres.position.lng
+        }
+
+      },
+      about: item.about,
+      image: item.image,
+      WHstatus: item.WHstatus,
+      id: index
+
+
+    }
+
+  });
   angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap'])
       .controller('mainController', mainController)
       .controller('ButtonsCtrl', function ($scope) {
 
 
         $scope.checkModel = {
-          kosioly: false,
-          muzea: false,
-          pomniki: false,
+          kosiol: false,
+          muzeum: false,
+          pomnik: false,
           wh: false
         };
 
-        $scope.randomMarkers = [];
-        if ($scope.checkModel.kosioly === true){
-          dupa.foreach(function (item, index){
-            if (item.typ==='kościół'){
-              $scope.randomMarkers.push(item[index])
-            }
-          })
-        }
+
         $scope.checkResults = [];
 
         $scope.$watchCollection('checkModel', function () {
-          $scope.checkResults = [];
+          $scope.randomMarkers = [];
           angular.forEach($scope.checkModel, function (value, key) {
             if (value) {
-              $scope.checkResults.push(key);
+              monumentsOK.forEach(function (item, index){
+                if (item.typ===key){
+                  filtrMonumentsOK.push(item)
+                }
+              })
             }
           });
         });
@@ -220,31 +240,9 @@
       scrollwheel: true
     };
 
-    console.log($scope.koscioly);
-
-    dupa = monuments.map(function (item, index) {
-
-      return {
-        nazwa: item.name,
-        typ: item.typ,
-        adres: {
-          street: item.adres.street,
-          number: item.adres.number,
-          position: {
-            latitude: item.adres.position.lat,
-            longitude: item.adres.position.lng
-          }
-
-        },
-        about: item.about,
-        image: item.image,
-        WHstatus: item.WHstatus,
-        id: index
+    $scope.randomMarkers = filtr ;
 
 
-      }
-
-    });
 
     // $scope.closeClick = function() {
     //   $scope.show = false;
@@ -262,7 +260,7 @@
     // };
 
 
-        $scope.randomMarkers = dupa;
+
 
   }
 
@@ -270,43 +268,7 @@
 
 
 
-  function DropdownCtrl($scope, $log) {
-    $scope.items = [
-      'The first choice!',
-      'And another choice for you.',
-      'but wait! A third!'
-    ];
 
-    $scope.status = {
-      isopen: false
-    };
-
-    $scope.toggled = function(open) {
-      $log.log('Dropdown is now: ', open);
-    };
-
-    $scope.toggleDropdown = function($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-      $scope.status.isopen = !$scope.status.isopen;
-    };
-
-    $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
-    $scope.type = type;
-    function type (typ){
-      clearMarkers();
-      if(typ === 'wszystkie'){
-        return callback(monuments)
-      }
-      var kategorie = [];
-      monuments.forEach( function (value, index) {
-        monuments[index].typ === typ ? kategorie.push(monuments[index]): false
-      });
-      callback(kategorie);
-      console.log(kategorie)
-
-    }
-  }
 
 
 
