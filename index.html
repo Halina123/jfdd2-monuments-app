@@ -48,13 +48,11 @@
   <ui-gmap-markers models="randomMarkers" coords="'adres.position'" icon="'icon'" type="'cluster'" click="onClick"></ui-gmap-markers>
 </ui-gmap-google-map>
 <div ng-controller="ButtonsCtrl">
-<div class="btn-group">
-  <label class="btn btn-primary" ng-model="checkModel.kosciol" uib-btn-checkbox>Left</label>
-  <label class="btn btn-primary" ng-model="checkModel.muzeum" uib-btn-checkbox>Middle</label>
-  <label class="btn btn-primary" ng-model="checkModel.pomnik" uib-btn-checkbox>Right</label>
+<div class="btn-group btn-group-justified">
+  <label class="btn btn-primary" ng-model="checkModel.kosciol" uib-btn-checkbox>Kościoły</label>
+  <label class="btn btn-primary" ng-model="checkModel.muzeum" uib-btn-checkbox>Muzea</label>
+  <label class="btn btn-primary" ng-model="checkModel.pomnik" uib-btn-checkbox>Pomniki</label>
   <label class="btn btn-primary" ng-model="checkModel.wh" uib-btn-checkbox>WH List</label>
-  <pre>Model: {{checkModel}}</pre>
-  <pre>Results: {{checkResults}}</pre>
 </div>
 </div>
 

@@ -171,8 +171,7 @@
 
     }
   ];
-  var fMonumentsOK = []
-  monumentsOK = monuments.map(function (item, index) {
+  var monumentsOK = monuments.map(function (item, index) {
 
     return {
       nazwa: item.name,
@@ -195,36 +194,11 @@
     }
 
   });
+  var fMonumentsOK = monumentsOK;
   angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap'])
       .controller('mainController', mainController)
       .controller('ButtonsCtrl', function ($scope) {
-
-
-        $scope.checkModel = {
-          kosiol: false,
-          muzeum: false,
-          pomnik: false,
-          wh: false
-        };
-
-
-        $scope.checkResults = [];
-
-        $scope.$watchCollection('checkModel', function () {
-          $scope.randomMarkers = [];
-          angular.forEach($scope.checkModel, function (value, key) {
-            if (value) {
-              monumentsOK.forEach(function (item, index){
-                if (item.typ===key){
-                  filtrMonumentsOK.push(item)
-                }
-              })
-            }
-          });
-        });
       });
-
-
 
 
   function mainController($scope) {
@@ -240,37 +214,43 @@
       scrollwheel: true
     };
 
-    $scope.randomMarkers = filtr ;
+    $scope.checkModel = {
+      kosciol: true,
+      muzeum: true,
+      pomnik: true,
+      wh: false
+    };
 
+    $scope.$watchCollection('checkModel', function () {
+      fMonumentsOK = [];
+      $scope.show = false;
+      angular.forEach($scope.checkModel, function (value, key) {
+        if (value) {
+          monumentsOK.forEach(function (item, index) {
+            if (item.typ === key && !$scope.checkModel.wh) {
+              fMonumentsOK.push(item)
+            } else if (item.typ === key && item.WHstatus) {
+              fMonumentsOK.push(item)
+            }
+          })
+        }
+      });
+      $scope.randomMarkers = fMonumentsOK;
+    });
 
+    $scope.closeClick = function () {
+      $scope.show = false;
+    };
 
-    // $scope.closeClick = function() {
-    //   $scope.show = false;
-    // };
-    //
-    // $scope.windowCoords = {};
-    //
-    // $scope.onClick = function(marker, eventName, model) {
-    //   $scope.map.center.latitude = model.adres.position.latitude;
-    //   $scope.map.center.longitude = model.adres.position.longitude;
-    //   $scope.windowCoords.latitude = model.adres.position.latitude;
-    //   $scope.windowCoords.longitude = model.adres.position.longitude;
-    //   $scope.parkName = 'dfsdfsdfsdfsdfsdf';
-    //   $scope.show = true;
-    // };
+    $scope.windowCoords = {};
 
-
-
+    $scope.onClick = function (marker, eventName, model) {
+      $scope.windowCoords.latitude = model.adres.position.latitude;
+      $scope.windowCoords.longitude = model.adres.position.longitude;
+      $scope.parkName = 'dfsdfsdfsdfsdfsdf';
+      $scope.show = true;
+    };
 
   }
-
-
-
-
-
-
-
-
-
 
 })();
