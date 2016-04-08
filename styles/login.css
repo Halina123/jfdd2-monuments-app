@@ -17,14 +17,30 @@ html, body {
 /*}*/
 #Lala {
     position: absolute;
-    width:40%;
-    height: 50%;
-    top:25%;
-    left: 30%;
+    width:100%;
+    height: 100%;
+    /*top:25%;*/
+    /*left: 30%;*/
     border: solid 2px black;
     text-align: center;
-    background: white;
+    background: url('../images/zdjeciePowitalne.jpg') no-repeat;
+    background-size: cover;
     z-index:9;
+}
+
+.titleApp {
+    font-size: 50px;
+
+}
+#login {
+    border: black solid 2px;
+    width: 40%;
+    height:40%;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    background: white;
+
 }
 
 
