@@ -16,7 +16,7 @@ html, body {
 }
 
 
-.angular-google-map-container { height: calc(100vh - 50px); }
+.angular-google-map-container { height: calc(100vh - 100px); }
 
 .infoWind {
     text-align: center;
@@ -45,6 +45,11 @@ html, body {
 
 .gm-style img {
     max-width: 200px;
+}
+
+
+.navbar-default{
+    margin: 0;
 }
 
 
