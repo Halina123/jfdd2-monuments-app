@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" ng-app="Workshop">
 <head>
   <meta charset="UTF-8">
   <meta name="google-signin-client_id" content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">
 
   <title>Zabytki Gdańska API</title>
   <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/login.css">
   <link rel="shortcut icon" href="images/icons/logoIcon.gif">
+  <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
   <script src="https://apis.google.com/js/api:client.js"></script>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -57,10 +59,63 @@
 
 <!--</div>-->
 
+<body ng-controller="mainController">
+<nav class="navbar-fixed-top navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu"
+              aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo </a>
+    </div>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class=" nav navbar-nav navbar-right">
+        <li><a href="#">Katalog</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Ulubione <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">zabytek nr 1</a></li>
+            <li><a href="#">zabyek nr 2 </a></li>
+            <li><a href="#">zabytek nr 3</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<div id="map"></div>
+<ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+  <ui-gmap-window show="show" coords='windowCoords' closeClick="closeClick()">
+    <div>{{parkName}}</div>
+  </ui-gmap-window>
 
+  <ui-gmap-markers models="randomMarkers" coords="'adres.position'" icon="'icon'" type="'cluster'" click="onClick"></ui-gmap-markers>
+</ui-gmap-google-map>
+<div ng-controller="ButtonsCtrl">
+<div class="btn-group btn-group-justified">
+  <label class="btn btn-primary" ng-model="checkModel.kosciol" uib-btn-checkbox>Kościoły</label>
+  <label class="btn btn-primary" ng-model="checkModel.muzeum" uib-btn-checkbox>Muzea</label>
+  <label class="btn btn-primary" ng-model="checkModel.pomnik" uib-btn-checkbox>Pomniki</label>
+  <label class="btn btn-primary" ng-model="checkModel.wh" uib-btn-checkbox>WH List</label>
+</div>
+</div>
 
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src='bower_components/lodash/dist/lodash.min.js'></script>
+<script src='bower_components/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<!--<script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYYI8HA5T5YQyMnsO6Z4xWxzZqrfQFhgs"></script>
+<script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
 <script src="scripts/main.js"></script>
 <script src="scripts/loginGoogle.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYYI8HA5T5YQyMnsO6Z4xWxzZqrfQFhgs&callback=initMap"
