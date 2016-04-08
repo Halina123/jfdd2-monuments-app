@@ -38,11 +38,14 @@
 #login {
     border: black solid 2px;
     width: 40%;
-    height:20%;
+    min-width: 300px;
+    height:150px;
     position: relative;
-    top: 27%;
-    left: 30%;
+    /*top: 27%;*/
+    /*left: 30%;*/
     background: #2b5e8b;
+    display: inline-block;
+    top:40%;
 
 }
 .loginTitle {
@@ -56,6 +59,8 @@
     height: 100vh;
 }
 
-
+.cos{
+    width: 300px;
+    text-align: center}
 
 
