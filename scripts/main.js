@@ -1,4 +1,5 @@
 (function () {
+  var pozycja;
   var obiekt = [];
   var ulubione = [];
     var monuments = [
@@ -215,9 +216,11 @@
     }
   });
 
+  
 
 
   function mainController($scope) {
+    $scope.pozycja = pozycja;
     $scope.ulubione = ulubione;
     $scope.map = {
       center: {
@@ -225,6 +228,31 @@
         longitude: 18.653333
       },
       zoom: 12,
+      events: {
+        tilesloaded: function (map, eventName, originalEventArgs) {
+          //map is trueley ready then this callback is hit
+        },
+        click: function (mapModel, eventName, originalEventArgs) {
+          var e = originalEventArgs[0];
+          var lat = e.latLng.lat(),
+              lon = e.latLng.lng();
+          $scope.map.clickedMarker = {
+            id: 0,
+            latitude: lat,
+            longitude: lon
+          };
+          pozycja = $scope.map.clickedMarker;
+          console.log(pozycja);
+          //scope apply required because this event handler is outside of the angular domain
+          $scope.$apply();
+        }
+      },
+
+      clickedMarker: {
+        id:0,
+        title: ''
+      },
+
       bounds: {}
     };
     $scope.options = {
@@ -280,3 +308,6 @@
   }
 
 })();
+
+
+
