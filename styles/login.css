@@ -31,17 +31,25 @@ html, body {
 .titleApp {
     font-size: 50px;
 
+
 }
 #login {
     border: black solid 2px;
     width: 40%;
-    height:40%;
-    position: absolute;
-    top: 30%;
+    height:20%;
+    position: relative;
+    top: 27%;
     left: 30%;
-    background: white;
+    background: #2b5e8b;
 
 }
+.loginTitle {
+    margin-top:2%;
+    margin-bottom: 5%;
+    font-size:20px;
+    color: white;
+}
+
 
 
 

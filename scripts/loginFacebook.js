@@ -4,13 +4,16 @@ $(document).ready(function() {
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
     console.log(response);
+
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      $('#Lala').hide();
       testAPI();
+      $('#Lala').hide();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -29,6 +32,7 @@ $(document).ready(function() {
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
+      $('#Lala').hide();
     });
   }
 
@@ -42,7 +46,8 @@ $(document).ready(function() {
     });
 
     FB.Event.subscribe('auth.login', function () {
-      window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
+      //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
+      $('#Lala').hide();
     });
 
     // Now that we've initialized the JavaScript SDK, we call
@@ -59,7 +64,8 @@ $(document).ready(function() {
 
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
-      window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
+      //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
+      $('#Lala').hide();
 
     });
 
@@ -80,6 +86,7 @@ $(document).ready(function() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
+      $('#Lala').hide();
     });
   }
 
