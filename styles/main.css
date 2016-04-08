@@ -21,24 +21,29 @@ html, body {
 
 .angular-google-map-container { height: 600px; }
 
-.infoWin {
-    width: 250px;
-    height: 150px;
+.infoWind {
+    height: 200px;
+    text-align: center;
+    width: 300px;
 }
 
 .images {
-    width: 80px;
-    height: 100px;
+    width: auto;
+    height: 200px;
    }
 
 .icon{
-    margin: 10px 13px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
-.textWindow {
-    text-align: center;
+.mojButton .btn-primary.active{
+    background-color: #ff1317;
 }
 
-h5 {
-    text-align: center;
+#mojBut {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }

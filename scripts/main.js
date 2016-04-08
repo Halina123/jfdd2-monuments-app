@@ -1,5 +1,7 @@
 (function () {
-  var monuments = [
+  var obiekt = [];
+  var ulubione = [];
+    var monuments = [
     {
       nazwa: 'Bazylika Mariacka',
       typ: 'kosciol',
@@ -188,7 +190,9 @@
       about: item.about,
       image: item.image,
       WHstatus: item.WHstatus,
-      id: index
+      id: index,
+      like: ''
+
 
 
     }
@@ -198,10 +202,23 @@
   angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap'])
       .controller('mainController', mainController)
       .controller('ButtonsCtrl', function ($scope) {
-      });
+        $scope.singleModel = 0;
+      })
+      .controller('InfoController', function ($scope, $log) {
+    $scope.templateValue = 'hello from the template itself';
+    $scope.clickedButtonInWindow = function () {
+      if (ulubione.indexOf(obiekt.nazwa) === -1){
+        ulubione.push(obiekt.nazwa);
+        obiekt.like = 'ulubione';
+      }
+
+    }
+  });
+
 
 
   function mainController($scope) {
+    $scope.ulubione = ulubione;
     $scope.map = {
       center: {
         latitude: 54.379208,
@@ -251,12 +268,13 @@
       $scope.show = true;
       $scope.nameMonuments = model.nazwa;
       $scope.opis = model.about;
+      $scope.like= model.like;
+      obiekt = model;
+
     };
 
 
-    $scope.lubie = function (){
 
-    }
 
 
   }
