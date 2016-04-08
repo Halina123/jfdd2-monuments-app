@@ -1,9 +1,50 @@
 html, body {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
 
-#map {
-    height: 100%;
+.nav  li:hover{
+    background-color: #e8e8e8;
 }
+
+.navbar-header a {
+    background-image: url("../images/icons/logo.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    width: 150px;
+}
+
+
+.angular-google-map-container { height: calc(100vh - 50px); }
+
+.infoWind {
+    text-align: center;
+}
+
+.images {
+    width: 100%;
+    max-width: 50px;
+    }
+
+.icon{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.infoWind .btn-primary.active{
+    background-color: #ff1317;
+}
+
+
+#filtr .btn {
+    border-radius: 0;
+    height: 50px;
+}
+
+.gm-style img {
+    max-width: 200px;
+}
+
+
