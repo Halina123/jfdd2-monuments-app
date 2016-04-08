@@ -6,9 +6,9 @@
     <title>Zabytki Gdańska API</title>
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/main.css">
     <link rel="shortcut icon" href="images/icons/logoIcon.gif">
     <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body ng-controller="mainController">
 <nav class="navbar-fixed-top navbar navbar-default">
@@ -21,7 +21,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo </a>
+            <a class="navbar-brand" href="#"></a>
         </div>
         <div class="collapse navbar-collapse" id="menu">
             <ul class=" nav navbar-nav navbar-right">
@@ -36,25 +36,36 @@
             </ul>
         </div>
     </div>
-    {{pozycja}}{{pozycja}}{{pozycja}}{{pozycja}}{{pozycja}}{{pozycja}}{{pozycja}}
 </nav>
 
 <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds" events="map.events" refresh="map.refresh">
     <ui-gmap-window show="show" coords='windowCoords' closeClick="closeClick()">
         <div class="container-fluid" ng-controller="InfoController">
-            <div class="row">
-                <div class="col-md-4">
-                    <img class="images" src="images/{{images}}.jpg" alt="">
+<div class="row">
+            <div class="col-md-4 no-float">
+                <img class="images" src="images/{{images}}.jpg" alt="">
 
-                </div>
-                <div class="col-md-8 infoWind mojButton">
+            </div>
+            <div class="col-md-8 infoWind mojButton no-float ">
+                <div class="row">
                     <h5>{{nameMonuments}}</h5>
-                    <p class="textWindow">{{opis}}</p>
-                    <label id="mojBut" class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'"
-                           ng-click="clickedButtonInWindow()">Ulubione</label>
 
+                    <p class="textWindow">{{opis}}</p>
+                </div>
+                <div class="row buttony">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary" ng-model="singleModel">
+                            Poleć
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <label id="mojBut" class="btn btn-primary right" ng-model="radioModel" uib-btn-radio="'Left'"
+                               ng-click="clickedButtonInWindow()">Ulubione</label>
+
+                    </div>
                 </div>
             </div>
+</div>
         </div>
     </ui-gmap-window>
     <ui-gmap-marker coords="map.clickedMarker" options="opts" idkey='map.clickedMarker.id'>
@@ -69,14 +80,7 @@
 
 
 
-
-
-
-
-
-
-
-<div ng-controller="ButtonsCtrl">
+<div ng-controller="ButtonsCtrl" id="filtr">
     <div class="btn-group btn-group-justified">
         <label class="btn btn-primary" ng-model="checkModel.kosciol" uib-btn-checkbox>Kościoły</label>
         <label class="btn btn-primary" ng-model="checkModel.muzeum" uib-btn-checkbox>Muzea</label>
