@@ -42,23 +42,23 @@
     <ui-gmap-window show="show" coords='windowCoords' closeClick="closeClick()">
         <div class="container-fluid" ng-controller="InfoController">
 <div class="row">
-            <div class="col-md-4 no-float">
+            <div class="col-sm-4 hidden-xs">
                 <img class="images" src="images/{{images}}.jpg" alt="">
 
             </div>
-            <div class="col-md-8 infoWind mojButton no-float ">
+            <div class="col-sm-8 col-xs-12   infoWind mojButton no-float ">
                 <div class="row">
                     <h5>{{nameMonuments}}</h5>
 
                     <p class="textWindow">{{opis}}</p>
                 </div>
                 <div class="row buttony">
-                    <div class="col-md-6">
+                    <div class="col-sm-6 col-xs-6 ">
                         <button type="button" class="btn btn-primary" ng-model="singleModel">
                             Poleć
                         </button>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-6 col-xs-6">
                         <label id="mojBut" class="btn btn-primary right" ng-model="radioModel" uib-btn-radio="'Left'"
                                ng-click="clickedButtonInWindow()">Ulubione</label>
 

@@ -24,6 +24,7 @@ html, body {
 
 .images {
     width: 100%;
+    max-width: 50px;
     }
 
 .icon{
@@ -41,4 +42,9 @@ html, body {
     border-radius: 0;
     height: 50px;
 }
+
+.gm-style img {
+    max-width: 200px;
+}
+
 
