@@ -2,7 +2,7 @@
   var pozycja;
   var obiekt = [];
   var ulubione = [];
-    var monuments = [
+  var monuments = [
     {
       nazwa: 'Bazylika Mariacka',
       typ: 'kosciol',
@@ -207,15 +207,15 @@
         $scope.singleModel = 0;
       })
       .controller('InfoController', function ($scope, $log) {
-    $scope.templateValue = 'hello from the template itself';
-    $scope.clickedButtonInWindow = function () {
-      if (ulubione.indexOf(obiekt.nazwa) === -1){
-        ulubione.push(obiekt.nazwa);
-        obiekt.like = 'ulubione';
-      }
+        $scope.templateValue = 'hello from the template itself';
+        $scope.clickedButtonInWindow = function () {
+          if (ulubione.indexOf(obiekt.nazwa) === -1){
+            ulubione.push(obiekt.nazwa);
+            obiekt.like = 'ulubione';
+          }
 
-    }
-  });
+        }
+      });
 
 
 
