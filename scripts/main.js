@@ -194,11 +194,8 @@
     }
 
   });
-}
 
-function hideF(target) {
-  document.getElementById(target).style.display = 'none';
-}
+
 
 
 
