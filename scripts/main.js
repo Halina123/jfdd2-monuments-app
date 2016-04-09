@@ -1,4 +1,5 @@
 (function () {
+  var aktualnaPozycja = [];
   var stanButtonuLokalizacja;
   var zakres;
   var pozycja;
@@ -242,8 +243,23 @@
 
 
   }).controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+    $scope.getLocation = getLocation;
+    function getLocation(){
+      debugger;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        function showPosition(position) {
+          aktualnaPozycja[0]= position.coords.latitude;
+          aktualnaPozycja[1]= position.coords.longitude;
+          }
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
 
+    getLocation();
     $scope.ok = function () {
+      zakres = $scope.zakres ;
       $uibModalInstance.close();
     };
 
@@ -251,7 +267,6 @@
       $uibModalInstance.dismiss('cancel');
     };
     
-    zakres = $scope.zakres;
     
     });
 
@@ -277,6 +292,9 @@
 
 
   function mainController($scope) {
+
+
+
     $scope.ulubione = ulubione;
     $scope.map = {
       center: {
@@ -306,16 +324,30 @@
       },
 
       clickedMarker: {
-        id:0,
-        title: ''
+      id: 0,
+        latitude: aktualnaPozycja[0],
+        longitude: aktualnaPozycja[1],
+      options: {
+        animation: 1
+      }
 
-      },
+    },
 
       bounds: {}
     };
     $scope.options = {
       scrollwheel: true
     };
+
+
+
+
+
+
+
+
+
+
 
     $scope.checkModel = {
       lokalizacja: false,
@@ -337,8 +369,7 @@
         monumentsOK.forEach(function (item){
           oldeglosc = getDistanceFromLatLonInKm(item.adres.position.latitude, item.adres.position.longitude, pozycja[0], pozycja[1]);
           console.log(oldeglosc);
-          debugger;
-          if (oldeglosc <= zakres ){
+              if (oldeglosc <= zakres ){
 
             monumentsfilredPosition.push(item)
           }
