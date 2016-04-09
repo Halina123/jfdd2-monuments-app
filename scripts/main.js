@@ -215,6 +215,9 @@
           }
 
         }
+        $scope.openModal = function(){
+          $('#modalPolec').modal('show');
+        }
       });
 
 
