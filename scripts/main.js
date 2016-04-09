@@ -1,12 +1,12 @@
 (function () {
-  var pozycja;
-  var obiekt = [];
-  var ulubione = [];
+  var position;
+  var object = [];
+  var favorite = [];
   var monuments = [
     {
-      nazwa: 'Bazylika Mariacka',
-      typ: 'kosciol',
-      adres: {
+      name: 'Bazylika Mariacka',
+      type: 'church',
+      address: {
         street: 'Reja',
         number: 4,
         position: {
@@ -14,16 +14,15 @@
           lng: 18.653242
         }
       },
-      about: 'jakiś opis zabytku nr 1 ',
-      image: '1',
+      about: 'Opis zabytku nr 1',
+      image: '0',
       WHstatus: true,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Muzeum II Wojny Światowej',
-      typ: 'muzeum',
-      adres: {
+      name: 'Muzeum II Wojny Światowej',
+      type: 'museum',
+      address: {
         street: 'Mickiewicza',
         number: 4,
         position: {
@@ -31,16 +30,15 @@
           lng: 18.648417
         }
       },
-      about: 'jakiś opis zabytku nr 2 ',
-      image: 'jakies zdjecie',
+      about: 'Opis zabytku nr 2',
+      image: '1',
       WHstatus: true,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Pomnik Obrońców Wybrzeża',
-      typ: 'pomnik',
-      adres: {
+      name: 'Pomnik Obrońców Wybrzeża',
+      type: 'monument',
+      address: {
         street: 'Reja',
         number: 4,
         position: {
@@ -48,16 +46,15 @@
           lng: 18.667375
         }
       },
-      about: 'jakiś opis zabytku nr 3 ',
+      about: 'Opis zabytku nr 3',
       image: '2',
       WHstatus: true,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Kościół Świętej Trójcy',
-      typ: 'kosciol',
-      adres: {
+      name: 'Kościół Świętej Trójcy',
+      type: 'church',
+      address: {
         street: 'Szymborskiej',
         number: 4,
         position: {
@@ -65,16 +62,15 @@
           lng: 18.646837
         }
       },
-      about: 'jakiś opis zabytku nr 4 ',
+      about: 'Opis zabytku nr 4',
       image: '3',
       WHstatus: false,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Pomnik Poległych Stoczniowców 1970',
-      typ: 'pomnik',
-      adres: {
+      name: 'Pomnik Poległych Stoczniowców 1970',
+      type: 'monument',
+      address: {
         street: 'Reja',
         number: 4,
         position: {
@@ -82,16 +78,15 @@
           lng: 18.649052
         }
       },
-      about: 'jakiś opis zabytku nr 5 ',
+      about: 'Opis zabytku nr 5',
       image: '4',
       WHstatus: false,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Europejskie Centrum Solidarności',
-      typ: 'muzeum',
-      adres: {
+      name: 'Europejskie Centrum Solidarności',
+      type: 'museum',
+      address: {
         street: 'Mickiewicza',
         number: 4,
         position: {
@@ -99,16 +94,15 @@
           lng: 18.649480
         }
       },
-      about: 'jakiś opis zabytku nr 6 ',
+      about: 'Opis zabytku nr 6',
       image: '5',
       WHstatus: false,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Kościół św. Katarzyny',
-      typ: 'kosciol',
-      adres: {
+      name: 'Kościół św. Katarzyny',
+      type: 'church',
+      address: {
         street: 'Reja',
         number: 4,
         position: {
@@ -116,16 +110,15 @@
           lng: 18.651482
         }
       },
-      about: 'jakiś opis zabytku nr 7 ',
-      image: 'jakies zdjecie',
+      about: 'Opis zabytku nr 7',
+      image: '6',
       WHstatus: true,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Pomnik Marszałka Józefa Piłsudskiego',
-      typ: 'pomnik',
-      adres: {
+      name: 'Pomnik Marszałka Józefa Piłsudskiego',
+      type: 'monument',
+      address: {
         street: 'Reja',
         number: 4,
         position: {
@@ -133,16 +126,15 @@
           lng: 18.591431
         }
       },
-      about: 'jakiś opis zabytku nr 8 ',
-      image: 'jakies zdjecie',
+      about: 'Opis zabytku nr 8',
+      image: '7',
       WHstatus: false,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Narodowe Muzeum Morskie w Gdańsku',
-      typ: 'muzeum',
-      adres: {
+      name: 'Narodowe Muzeum Morskie w Gdańsku',
+      type: 'museum',
+      address: {
         street: 'Reja',
         number: 4,
         position: {
@@ -150,16 +142,15 @@
           lng: 18.659051
         }
       },
-      about: 'jakiś opis zabytku nr 9 ',
-      image: 'jakies zdjecie',
+      about: 'Opis zabytku nr 9',
+      image: '8',
       WHstatus: true,
       ID: 'xxxx'
-
     },
     {
-      nazwa: 'Klasztor Ojców Dominikanów',
-      typ: 'kosciol',
-      adres: {
+      name: 'Klasztor Ojców Dominikanów',
+      type: 'church',
+      address: {
         street: 'Mickiewicza',
         number: 2,
         position: {
@@ -167,62 +158,53 @@
           lng: 18.651477
         }
       },
-      about: 'jakiś opis zabytku nr 10 ',
-      image: 'jakies zdjecie',
+      about: 'Opis zabytku nr 10',
+      image: '9',
       WHstatus: false,
       ID: 'xxxx'
-
     }
   ];
+
   var monumentsOK = monuments.map(function (item, index) {
-
     return {
-      nazwa: item.nazwa,
-      typ: item.typ,
-      adres: {
-        street: item.adres.street,
-        number: item.adres.number,
+      name: item.name,
+      type: item.type,
+      address: {
+        street: item.address.street,
+        number: item.address.number,
         position: {
-          latitude: item.adres.position.lat,
-          longitude: item.adres.position.lng
+          latitude: item.address.position.lat,
+          longitude: item.address.position.lng
         }
-
       },
       about: item.about,
       image: item.image,
       WHstatus: item.WHstatus,
       id: index,
       like: ''
-
-
-
     }
-
   });
+
   var fMonumentsOK = monumentsOK;
 
   angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap'])
-      .controller('mainController', mainController)
-      .controller('ButtonsCtrl', function ($scope) {
-        $scope.singleModel = 0;
-      })
-      .controller('InfoController', function ($scope, $log) {
-        $scope.templateValue = 'hello from the template itself';
-        $scope.clickedButtonInWindow = function () {
-          if (ulubione.indexOf(obiekt.nazwa) === -1){
-            ulubione.push(obiekt.nazwa);
-            obiekt.like = 'ulubione';
-          }
-
+    .controller('mainController', mainController)
+    .controller('ButtonsCtrl', function ($scope) {
+      $scope.singleModel = 0;
+    })
+    .controller('InfoController', function ($scope) {
+      $scope.templateValue = 'hello from the template itself';
+      $scope.clickedButtonInWindow = function () {
+        if (favorite.indexOf(object.name) === -1) {
+          favorite.push(object.name);
+          object.like = 'favorite';
         }
-      });
-
-
-
+      }
+    });
 
   function mainController($scope) {
-    $scope.pozycja = pozycja;
-    $scope.ulubione = ulubione;
+    $scope.position = position;
+    $scope.favorite = favorite;
     $scope.map = {
       center: {
         latitude: 54.379208,
@@ -231,39 +213,36 @@
       zoom: 12,
       events: {
         tilesloaded: function (map, eventName, originalEventArgs) {
-          //map is trueley ready then this callback is hit
         },
         click: function (mapModel, eventName, originalEventArgs) {
           var e = originalEventArgs[0];
           var lat = e.latLng.lat(),
-              lon = e.latLng.lng();
+            lon = e.latLng.lng();
           $scope.map.clickedMarker = {
             id: 0,
             latitude: lat,
             longitude: lon
           };
-          pozycja = $scope.map.clickedMarker;
-          console.log(pozycja);
-          //scope apply required because this event handler is outside of the angular domain
+          position = $scope.map.clickedMarker;
+          console.log(position);
           $scope.$apply();
         }
       },
-
       clickedMarker: {
-        id:0,
+        id: 0,
         title: ''
       },
-
       bounds: {}
     };
+
     $scope.options = {
       scrollwheel: true
     };
 
     $scope.checkModel = {
-      kosciol: true,
-      muzeum: true,
-      pomnik: true,
+      church: true,
+      museum: true,
+      monument: true,
       wh: false
     };
 
@@ -272,10 +251,10 @@
       $scope.show = false;
       angular.forEach($scope.checkModel, function (value, key) {
         if (value) {
-          monumentsOK.forEach(function (item, index) {
-            if (item.typ === key && !$scope.checkModel.wh) {
+          monumentsOK.forEach(function (item) {
+            if (item.type === key && !$scope.checkModel.wh) {
               fMonumentsOK.push(item)
-            } else if (item.typ === key && item.WHstatus) {
+            } else if (item.type === key && item.WHstatus) {
               fMonumentsOK.push(item)
             }
           })
@@ -291,28 +270,18 @@
     $scope.windowCoords = {};
 
     $scope.onClick = function (marker, eventName, model) {
-      $scope.windowCoords.latitude = model.adres.position.latitude;
-      $scope.windowCoords.longitude = model.adres.position.longitude;
+      $scope.windowCoords.latitude = model.address.position.latitude;
+      $scope.windowCoords.longitude = model.address.position.longitude;
       $scope.images = model.id;
       $scope.show = true;
-      $scope.nameMonuments = model.nazwa;
+      $scope.nameMonuments = model.name;
       $scope.opis = model.about;
-      $scope.like= model.like;
-      obiekt = model;
-
+      $scope.like = model.like;
+      object = model;
     };
-
-
-
-
-
   }
-
 })();
 
 function hideF(target) {
   document.getElementById(target).style.display = 'none';
 }
-
-
-
