@@ -4,7 +4,7 @@ html, body {
     padding: 0;
 }
 
-.nav  li:hover{
+.nav li:hover {
     background-color: #e8e8e8;
 }
 
@@ -15,8 +15,9 @@ html, body {
     width: 150px;
 }
 
-
-.angular-google-map-container { height: calc(100vh - 102px); }
+.angular-google-map-container {
+    height: calc(100vh - 102px);
+}
 
 .infoWind {
     text-align: center;
@@ -27,16 +28,15 @@ html, body {
     max-width: 50px;
 }
 
-.icon{
+.icon {
     position: absolute;
     bottom: 0;
     right: 0;
 }
 
-.infoWind .btn-primary.active{
+.infoWind .btn-primary.active {
     background-color: #ff1317;
 }
-
 
 #filtr .btn {
     border-radius: 0;
@@ -47,8 +47,7 @@ html, body {
     max-width: 200px;
 }
 
-
-.navbar-default{
+.navbar-default {
     margin: 0;
 }
 
