@@ -1,53 +1,25 @@
-/*html, body {*/
-    /*height: 100vh;*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-    /*position: absolute;*/
-    /*top:0;*/
-
-
-/*}*/
-
-
-/*.loginNapis {*/
-    /*margin-top:50px;*/
-    /*margin-bottom: 100px;*/
-    /*font-size: 20px;*/
-
-/*}*/
-/*.gbutton {*/
-/*}*/
-#Lala {
+#welcomeLogin {
     position: absolute;
     top:0;
     width:100%;
-    /*top:25%;*/
-    /*left: 30%;*/
     text-align: center;
-    background: url('../images/zdjeciePowitalne.jpg') no-repeat;
+    background: url('../images/loginSection.jpg') no-repeat;
     background-size: cover;
     z-index:9;
     height: 100vh;
 }
 
-.titleApp {
-    font-size: 50px;
-
-
-}
 #login {
     border: black solid 2px;
     width: 40%;
     min-width: 300px;
     height:150px;
     position: relative;
-    /*top: 27%;*/
-    /*left: 30%;*/
     background: #2b5e8b;
     display: inline-block;
     top:40%;
-
 }
+
 .loginTitle {
     margin-top:2%;
     margin-bottom: 5%;
@@ -55,12 +27,15 @@
     color: white;
 }
 
-.modal{
+.modal {
     height: 100vh;
 }
 
-.cos{
+.loginField {
     width: 300px;
-    text-align: center}
+    text-align: center;
+}
 
-
+.titleApp {
+    font-size: 50px;
+}

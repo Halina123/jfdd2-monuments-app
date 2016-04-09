@@ -1,73 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="google-signin-client_id" content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <meta name="google-signin-client_id"
+        content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">
   <title>Zabytki Gdańska API</title>
-  <!--<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">-->
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/login.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-  <script src="https://apis.google.com/js/api:client.js"></script>
-
-  <link rel="shortcut icon" href="images/icons/logoIcon.gif">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" type="text/css">
+  <link rel="shortcut icon" href="images/icons/favicon.gif">
 </head>
+
 <body>
-<!--<div id="my-signin2"><a href="index.html" onclick="onSuccess();">Sign In</a></div>-->
-<!--<a href="index.html" onclick="onSuccess();">Sign In</a>-->
-<!--<div class="g-signin2" data-width="600" data-height="200" data-longtitle="true">-->
-
 <div class="login">
-  <p class="loginNapis">Zaloguj sie za pomoca</p>
+  <p class="loginNapis">Zaloguj sie za pomocą</p>
   <div class="gbutton">
-  <button class="g-signin" onclick="reDirect()"
-          data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
-          data-requestvisibleactions="http://schemas.google.com/AddActivity"
-          data-clientId="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com"
-          data-accesstype="offline"
-          data-callback="mycoddeSignIn"
-          data-theme="blue"
-          data-cookiepolicy="single_host_origin">
-  </button>
+    <button class="g-signin" onclick="reDirect()"
+            data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
+            data-requestvisibleactions="http://schemas.google.com/AddActivity"
+            data-clientId="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com"
+            data-accesstype="offline"
+            data-callback="mycoddeSignIn"
+            data-theme="blue"
+            data-cookiepolicy="single_host_origin">
+    </button>
   </div>
-  </div>
-  <!--<script>(function(d, s, id) {-->
-    <!--var js, fjs = d.getElementsByTagName(s)[0];-->
-    <!--if (d.getElementById(id)) return;-->
-    <!--js = d.createElement(s); js.id = id;-->
-    <!--js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.5&appId=1113880501995933";-->
-    <!--fjs.parentNode.insertBefore(js, fjs);-->
-  <!--}(document, 'script', 'facebook-jssdk'));-->
-  <!--</script>-->
-  <!--<div id="fb-root"></div>-->
-  <!--<div class="fb-login-button" data-show-faces="false" data-auto-logout-link="false">-->
-    <!--<fb:login-button size="large"-->
-                     <!--onlogin="Log.info.bind('onlogin callback')">-->
-      <!--Zaloguj się przez FB-->
-    <!--</fb:login-button>-->
-  <!--</div>-->
-<!--</div>-->
-<!--<div id="gSignInWrapper">-->
-  <!--<span class="label">Sign in with:</span>-->
-  <!--<div id="customBtn" class="customGPlusSignIn">-->
-    <!--<span class="icon"></span>-->
-    <!--<span class="buttonText">Google</span>-->
-  <!--</div>-->
-<!--</div>-->
-<!--<div id="name"></div>-->
-<!--<script>startApp();</script>-->
-
-
+</div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="scripts/loginGoogle.js"></script>
-<!--<script src="scripts/loginFacebook.js"></script>-->
-<!--<script src="node_modules/jquery/dist/jquery.min.js"></script>-->
-  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-
-
-  <!--<script src="https://apis.google.com/js/platform.js" async defer></script>-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+<script src="https://apis.google.com/js/api:client.js"></script>
 </body>
 </html>
