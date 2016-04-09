@@ -1,4 +1,6 @@
 (function () {
+  var stanButtonuLokalizacja;
+  var zakres;
   var pozycja;
   var obiekt = [];
   var ulubione = [];
@@ -201,7 +203,7 @@
   });
   var fMonumentsOK = monumentsOK;
 
-  angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap'])
+  angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap', 'ngAnimate'])
       .controller('mainController', mainController)
       .controller('ButtonsCtrl', function ($scope) {
         $scope.singleModel = 0;
@@ -215,13 +217,66 @@
           }
 
         }
-      });
+      }).controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
 
+    $scope.animationsEnabled = true;
+
+    $scope.open = function (size) { if(stanButtonuLokalizacja){
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        size: size,
+        resolve: {
+          items: function () {
+            return $scope.items;
+          }
+        }
+      });
+    }
+
+
+
+    };
+
+
+
+  }).controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+
+    $scope.ok = function () {
+      $uibModalInstance.close();
+    };
+
+    $scope.cancel = function () {
+      $uibModalInstance.dismiss('cancel');
+    };
+    
+    zakres = $scope.zakres;
+    
+    });
+
+
+  function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lon2-lon1);
+    var a =
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2)
+        ;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c; // Distance in km
+    return d;
+  }
+
+  function deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
 
 
 
   function mainController($scope) {
-    $scope.pozycja = pozycja;
     $scope.ulubione = ulubione;
     $scope.map = {
       center: {
@@ -230,28 +285,30 @@
       },
       zoom: 12,
       events: {
-        tilesloaded: function (map, eventName, originalEventArgs) {
-          //map is trueley ready then this callback is hit
-        },
-        click: function (mapModel, eventName, originalEventArgs) {
-          var e = originalEventArgs[0];
+          click: function (mapModel, eventName, originalEventArgs) {
+                     var e = originalEventArgs[0];
           var lat = e.latLng.lat(),
               lon = e.latLng.lng();
           $scope.map.clickedMarker = {
             id: 0,
             latitude: lat,
-            longitude: lon
+            longitude: lon,
+            options: {
+              animation: 1             
+            },
+            icon: 'images/icons/blue_marker.png'
+            
           };
-          pozycja = $scope.map.clickedMarker;
-          console.log(pozycja);
-          //scope apply required because this event handler is outside of the angular domain
-          $scope.$apply();
+          pozycja = [$scope.map.clickedMarker.latitude , $scope.map.clickedMarker.longitude];
+            $scope.pozycja = pozycja;
+            $scope.$apply();
         }
       },
 
       clickedMarker: {
         id:0,
         title: ''
+
       },
 
       bounds: {}
@@ -261,18 +318,34 @@
     };
 
     $scope.checkModel = {
+      lokalizacja: false,
       kosciol: true,
       muzeum: true,
       pomnik: true,
       wh: false
     };
-
-    $scope.$watchCollection('checkModel', function () {
+    $scope.$watchCollection('pozycja', checkModel);
+    $scope.$watchCollection('checkModel', checkModel);
+    function checkModel() {
+      stanButtonuLokalizacja = $scope.checkModel.lokalizacja;
       fMonumentsOK = [];
+      monumentsfilredPosition = monumentsOK;
       $scope.show = false;
       angular.forEach($scope.checkModel, function (value, key) {
-        if (value) {
-          monumentsOK.forEach(function (item, index) {
+        if (value && key === 'lokalizacja')
+        {monumentsfilredPosition = [];
+        monumentsOK.forEach(function (item){
+          oldeglosc = getDistanceFromLatLonInKm(item.adres.position.latitude, item.adres.position.longitude, pozycja[0], pozycja[1]);
+          console.log(oldeglosc);
+          debugger;
+          if (oldeglosc <= zakres ){
+
+            monumentsfilredPosition.push(item)
+          }
+        })
+        }
+        if (value && key !== 'lokalizacja' && key !== 'wh') {
+          monumentsfilredPosition.forEach(function (item, index) {
             if (item.typ === key && !$scope.checkModel.wh) {
               fMonumentsOK.push(item)
             } else if (item.typ === key && item.WHstatus) {
@@ -282,7 +355,7 @@
         }
       });
       $scope.randomMarkers = fMonumentsOK;
-    });
+    }
 
     $scope.closeClick = function () {
       $scope.show = false;
