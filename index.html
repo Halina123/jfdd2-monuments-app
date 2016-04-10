@@ -33,7 +33,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Ulubione <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li ng-repeat="x in ulubione"><a href="#">{{x}} </a></li>
+                        <li ng-repeat="x in favourite"><a href="#">{{x}} </a></li>
                     </ul>
                 </li>
             </ul>
@@ -47,9 +47,9 @@
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Zaloguj</button>
     </div>
 </div>
-<div id="myModal" class="modal fade cos" role="dialog">
+<div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content cos">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Zaloguj się</h4>
@@ -76,7 +76,7 @@
                 <div class="col-sm-8 col-xs-12   infoWind mojButton no-float ">
                     <div class="row">
                         <h5>{{nameMonuments}}</h5>
-                        <p class="textWindow">{{opis}}</p>
+                        <p class="textWindow">{{about}}</p>
                     </div>
                     <div class="row buttony">
                         <div class="col-sm-6 col-xs-6 ">
@@ -97,21 +97,21 @@
     <ui-gmap-marker models="map.clickedMarker" coords="map.clickedMarker" options="map.clickedMarker.options"
                     idkey='map.clickedMarker.id' icon="'map.clickedMarker.icon'">
         <ui-gmap-marker-label content="map.clickedMarker.title" anchor="100 -10" class="marker-labels"/>
-        <ui-gmap-window isIconVisibleOnClick="true" options="map.infoWindowWithCustomClass.options">This is my clicked
-            marker!<p class="muted">My marker will reappear when you close me.</p>
-        </ui-gmap-window>
     </ui-gmap-marker>
-    <ui-gmap-markers models="randomMarkers" coords="'adres.position'" type="'cluster'"
-                     click="onClick"></ui-gmap-markers>
+    <ui-gmap-markers models="randomMarkers" coords="'address.position'" type="'cluster'"
+                     click="onClick">
+    </ui-gmap-markers>
 </ui-gmap-google-map>
 <div ng-controller="ModalDemoCtrl">
-    <div ng-controller="ButtonsCtrl" id="filtr">
-        <div class="btn-group btn-group-justified">
-            <label class="btn btn-primary" ng-model="checkModel.kosciol" uib-btn-checkbox>Kościoły</label>
-            <label class="btn btn-primary" ng-model="checkModel.muzeum" uib-btn-checkbox>Muzea</label>
-            <label class="btn btn-primary" ng-model="checkModel.pomnik" uib-btn-checkbox>Pomniki</label>
-            <label class="btn btn-primary" ng-model="checkModel.wh" uib-btn-checkbox>WH List</label>
-            <label class="btn btn-primary" ng-click="open()" ng-model="checkModel.lokalizacja" uib-btn-checkbox>lokalizacja</label>
+    <div ng-controller="ModalDemoCtrl">
+        <div ng-controller="ButtonsCtrl" id="filtr">
+            <div class="btn-group btn-group-justified">
+                <label class="btn btn-primary" ng-model="checkModel.church" uib-btn-checkbox>Kościoły</label>
+                <label class="btn btn-primary" ng-model="checkModel.museum" uib-btn-checkbox>Muzea</label>
+                <label class="btn btn-primary" ng-model="checkModel.pomnik" uib-btn-checkbox>Pomniki</label>
+                <label class="btn btn-primary" ng-model="checkModel.wh" uib-btn-checkbox>WH List</label>
+                <label class="btn btn-primary" ng-click="open()" ng-model="checkModel.lokalizacja" uib-btn-checkbox>lokalizacja</label>
+            </div>
         </div>
     </div>
 </div>
