@@ -126,7 +126,7 @@
                                 <p class="textWindow">{{about}}</p>
                             </div>
 
-                            <div class="col-sm-6 col-xs-6">
+                            <div class="col-sm-6 col-xs-6 ">
                                 <button type="button"
                                         class="btn btn-primary"
                                         ng-model="singleModel">Poleć
@@ -147,9 +147,6 @@
                                 coords="map.clickedMarker"
                                 options="map.clickedMarker.options"
                                 idkey='map.clickedMarker.id'>
-                    <ui-gmap-marker-label content="map.clickedMarker.title"
-                                          anchor="100 -10"
-                                          class="marker-labels"/>
                 </ui-gmap-marker>
                 <ui-gmap-markers models="randomMarkers"
                                  coords="'address.position'"

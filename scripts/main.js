@@ -274,7 +274,6 @@ var object = [];
     }
 
     function InfoController($scope, $log) {
-        $scope.templateValue = 'hello from the template itself';
         $scope.clickedButtonInWindow = function () {
             if (favourite.indexOf(object.name) === -1) {
                 favourite.push(object.name);
@@ -317,8 +316,8 @@ var object = [];
         var dLat = deg2rad(lat2 - lat1);  // deg2rad below
         var dLon = deg2rad(lon2 - lon1);
         var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         var d = R * c;
         return d;
@@ -329,7 +328,7 @@ var object = [];
     }
 
     function mainController($scope) {
-      $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
+        $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
         $scope.favourite = favourite;
         $scope.map = {
             center: {
@@ -349,7 +348,7 @@ var object = [];
                         options: {
                             animation: 1
                         }
-                         };
+                    };
                     position = [$scope.map.clickedMarker.latitude, $scope.map.clickedMarker.longitude];
                     $scope.position = position;
                     $scope.$apply();
@@ -405,6 +404,7 @@ var object = [];
             });
             $scope.randomMarkers = fMonumentsOK;
         }
+
         $scope.closeClick = function () {
             $scope.show = false;
         };
@@ -423,7 +423,7 @@ var object = [];
 })();
 
 function hideF(target) {
-  document.getElementById(target).style.display = 'none';
+    document.getElementById(target).style.display = 'none';
 }
 
 
