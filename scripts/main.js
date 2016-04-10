@@ -2,6 +2,7 @@
   var pozycja;
   var obiekt = [];
   var ulubione = [];
+  var polecone = [];
   var monuments = [
     {
       nazwa: 'Bazylika Mariacka',
@@ -213,7 +214,10 @@
             ulubione.push(obiekt.nazwa);
             obiekt.like = 'ulubione';
           }
-
+          if (polecone.indexOf(obiekt.nazwa) === -1) {
+            polecone.push(obiekt.nazwa);
+            obiekt.recommend = 'polecone';
+          }
         }
         $scope.openModal = function(){
           $('#modalPolec').modal('show');
@@ -226,6 +230,7 @@
   function mainController($scope) {
     $scope.pozycja = pozycja;
     $scope.ulubione = ulubione;
+    $scope.polecone = polecone;
     $scope.map = {
       center: {
         latitude: 54.379208,

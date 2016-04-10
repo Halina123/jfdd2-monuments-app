@@ -36,6 +36,13 @@
             <li ng-repeat="x in ulubione"><a href="#">{{x}} </a></li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Polecone <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="x in polecone"><a href="#">{{x}} </a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
@@ -130,7 +137,7 @@
               <label for="name">Email</label>
               <input type="email" id="name" placeholder="Email" class="form-control">
             </div>
-            <button type="submit" class="btn btn-primary">Polecam</button>
+            <button type="submit" class="btn btn-primary" ng-click="clickedButtonInWindow()">Polecam</button>
           </form>
         </section>
 
