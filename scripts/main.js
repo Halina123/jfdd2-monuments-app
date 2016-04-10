@@ -1,3 +1,6 @@
+var object = [];
+
+
 (function () {
     var actualPosition = [];
     var buttonLocalisation;
@@ -326,6 +329,7 @@
     }
 
     function mainController($scope) {
+      $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
         $scope.favourite = favourite;
         $scope.map = {
             center: {
