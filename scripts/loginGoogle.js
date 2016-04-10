@@ -4,6 +4,7 @@ function onSuccess(googleUser) {
   $('#Lala').hide();
   //location.reload();
   //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
+  localStorage.setItem('login', googleUser.getBasicProfile().getName());
 }
 function onFailure(error) {
   console.log(error);

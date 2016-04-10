@@ -214,14 +214,14 @@
             ulubione.push(obiekt.nazwa);
             obiekt.like = 'ulubione';
           }
-          if (polecone.indexOf(obiekt.nazwa) === -1) {
-            polecone.push(obiekt.nazwa);
-            obiekt.recommend = 'polecone';
-          }
+
         }
         $scope.openModal = function(){
+          wyczyscForm();
+          $('#obiektPolec').val(obiekt.nazwa);
           $('#modalPolec').modal('show');
         }
+
       });
 
 
@@ -309,7 +309,9 @@
       obiekt = model;
 
     };
-
+    $scope.loadRecommendations = function () {
+      getStore(polecone);
+    }
 
 
 
