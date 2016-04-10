@@ -1,122 +1,186 @@
 <!DOCTYPE html>
 <html lang="pl" ng-app="Workshop">
 <head>
-    <meta charset="UTF-8">
-    <meta name="google-signin-client_id"
-          content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zabytki Gdańska API</title>
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/login.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="images/icons/logoIcon.gif">
-    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
-    <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8">
+  <meta name="google-signin-client_id"
+        content="585245968094-in0rk60v6fptor65jvj752mu0fb6mvlg.apps.googleusercontent.com">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>Zabytki Gdańska API</title>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+  <link rel="stylesheet" href="styles/login.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="shortcut icon" href="images/icons/favicon.gif">
 </head>
+
 <body ng-controller="mainController">
 <nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"></a>
-        </div>
-        <div class="collapse navbar-collapse" id="menu">
-            <ul class=" nav navbar-nav navbar-right">
-                <li><a href="#">Katalog</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Ulubione <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li ng-repeat="x in favourite"><a href="#">{{x}} </a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#menu"
+              aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"></a>
     </div>
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class=" nav navbar-nav navbar-right">
+        <li><a href="#">Katalog</a></li>
+        <li class="dropdown">
+          <a href="#"
+             class="dropdown-toggle"
+             data-toggle="dropdown"
+             role="button"
+             aria-haspopup="true"
+             aria-expanded="false">Ulubione
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="x in favorite"><a href="#">{{x}}</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
-<div id="Lala">
-    <p class="titleApp">Wybierz się z nami w podróż po Gdańsku</p>
-    <div id="login">
-        <p class="loginTitle">Zaloguj się do naszej aplikacji za pomocą Google</p>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Zaloguj</button>
-    </div>
+
+<div id="welcomeLogin">
+  <p class="titleApp">Wybierz się z nami w podróż po Gdańsku</p>
+  <div id="login">
+    <p class="loginTitle">Zaloguj się do naszej aplikacji za pomocą Google</p>
+    <button type="button"
+            class="btn btn-info btn-lg"
+            data-toggle="modal"
+            data-target="#myModal">Zaloguj
+    </button>
+  </div>
 </div>
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Zaloguj się</h4>
-            </div>
-            <div class="modal-body">
-                <div id="my-signin2"></div>
-                <a href="#" onclick="signOut();">Sign out</a>
-                <p></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
+
+<div id="myModal"
+     class="modal fade"
+     role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"
+                class="close"
+                data-dismiss="modal">&times;
+        </button>
+        <h4 class="modal-title">Zaloguj</h4>
+      </div>
+      <div class="modal-body">
+        <div id="my-signin2"></div>
+        <a href="#" onclick="signOut();">Wyloguj</a>
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="btn btn-default"
+                data-dismiss="modal">Zamknij
+        </button>
+      </div>
     </div>
+  </div>
 </div>
-<ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds"
-                    events="map.events" refresh="map.refresh">
-    <ui-gmap-window show="show" coords='windowCoords' closeClick="closeClick()">
-        <div class="container-fluid" ng-controller="InfoController">
-            <div class="row">
-                <div class="col-sm-4 hidden-xs">
-                    <img class="images" src="images/{{images}}.jpg" alt="">
-                </div>
-                <div class="col-sm-8 col-xs-12   infoWind mojButton no-float ">
-                    <div class="row">
-                        <h5>{{nameMonuments}}</h5>
-                        <p class="textWindow">{{about}}</p>
-                    </div>
-                    <div class="row buttony">
-                        <div class="col-sm-6 col-xs-6 ">
-                            <button type="button" class="btn btn-primary" ng-model="singleModel">
-                                Poleć
-                            </button>
-                        </div>
-                        <div class="col-sm-6 col-xs-6">
-                            <label id="mojBut" class="btn btn-primary right" ng-model="radioModel"
-                                   uib-btn-radio="'Left'"
-                                   ng-click="clickedButtonInWindow()">Ulubione</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+<ui-gmap-google-map center="map.center"
+                    zoom="map.zoom"
+                    draggable="true"
+                    options="options"
+                    bounds="map.bounds"
+                    events="map.events"
+                    refresh="map.refresh">
+  <ui-gmap-window show="show"
+                  coords='windowCoords'
+                  closeClick="closeClick()">
+    <div class="container-fluid"
+         ng-controller="InfoController">
+      <div class="row">
+        <div class="col-sm-4 hidden-xs">
+          <img class="images"
+               src="images/{{images}}.jpg"
+               alt="">
         </div>
-    </ui-gmap-window>
-    <ui-gmap-marker models="map.clickedMarker" coords="map.clickedMarker" options="map.clickedMarker.options"
-                    idkey='map.clickedMarker.id' icon="'map.clickedMarker.icon'">
-        <ui-gmap-marker-label content="map.clickedMarker.title" anchor="100 -10" class="marker-labels"/>
-    </ui-gmap-marker>
-    <ui-gmap-markers models="randomMarkers" coords="'address.position'" type="'cluster'"
-                     click="onClick">
-    </ui-gmap-markers>
+        <div class="col-sm-8 col-xs-12   infoWind mojButton no-float ">
+          <div class="row">
+            <h5>{{nameMonuments}}</h5>
+            <p class="textWindow">{{about}}</p>
+          </div>
+          <div class="row buttony">
+            <div class="col-sm-6 col-xs-6 ">
+              <button type="button"
+                      class="btn btn-primary"
+                      ng-model="singleModel">Poleć
+              </button>
+            </div>
+            <div class="col-sm-6 col-xs-6">
+              <label id="mojBut"
+                     class="btn btn-primary right"
+                     ng-model="radioModel"
+                     uib-btn-radio="'Left'"
+                     ng-click="clickedButtonInWindow()">Ulubione
+              </label>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ui-gmap-window>
+  <ui-gmap-marker models="map.clickedMarker"
+                  coords="map.clickedMarker"
+                  options="map.clickedMarker.options"
+                  idkey='map.clickedMarker.id'>
+    <ui-gmap-marker-label content="map.clickedMarker.title"
+                          anchor="100 -10"
+                          class="marker-labels"/>
+  </ui-gmap-marker>
+  <ui-gmap-markers models="randomMarkers"
+                   coords="'address.position'"
+                   type="'cluster'"
+                   click="onClick">
+  </ui-gmap-markers>
 </ui-gmap-google-map>
 <div ng-controller="ModalDemoCtrl">
-    <div ng-controller="ModalDemoCtrl">
-        <div ng-controller="ButtonsCtrl" id="filtr">
-            <div class="btn-group btn-group-justified">
-                <label class="btn btn-primary" ng-model="checkModel.church" uib-btn-checkbox>Kościoły</label>
-                <label class="btn btn-primary" ng-model="checkModel.museum" uib-btn-checkbox>Muzea</label>
-                <label class="btn btn-primary" ng-model="checkModel.pomnik" uib-btn-checkbox>Pomniki</label>
-                <label class="btn btn-primary" ng-model="checkModel.wh" uib-btn-checkbox>WH List</label>
-                <label class="btn btn-primary" ng-click="open()" ng-model="checkModel.lokalizacja" uib-btn-checkbox>lokalizacja</label>
-            </div>
-        </div>
-    </div>
+  <div ng-controller="ModalDemoCtrl">
+<div ng-controller="ButtonsCtrl" id="filtr">
+  <div class="btn-group btn-group-justified">
+    <label class="btn btn-primary"
+           ng-model="checkModel.church"
+           uib-btn-checkbox>Kościoły
+    </label>
+    <label class="btn btn-primary"
+           ng-model="checkModel.museum"
+           uib-btn-checkbox>Muzea
+    </label>
+    <label class="btn btn-primary"
+           ng-model="checkModel.monument"
+           uib-btn-checkbox>Pomniki
+    </label>
+    <label class="btn btn-primary"
+           ng-model="checkModel.wh"
+           uib-btn-checkbox>Dziedzictwo światowe
+    </label>
+    <label class="btn btn-primary"
+           ng-click="open()"
+           ng-model="checkModel.lokalizacja"
+           uib-btn-checkbox>lokalizacja</label>
+  </div>
+</div>
+  </div>
 </div>
 <script src="scripts/loginGoogle.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -125,8 +189,6 @@
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYYI8HA5T5YQyMnsO6Z4xWxzZqrfQFhgs"></script>
 <script src='bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
