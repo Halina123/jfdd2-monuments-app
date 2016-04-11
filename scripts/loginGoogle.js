@@ -1,6 +1,8 @@
 function onSuccess(googleUser) {
   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
   $('#welcomeLogin').hide();
+  $('#myModal').hide();
+  $('.modal-backdrop').hide();
 }
 
 function onFailure(error) {
