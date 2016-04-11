@@ -436,15 +436,6 @@ var object = [];
           //console.log(polecone);
 
       };
-        $scope.loadFavourites = function () {
-
-            $scope.favourite = getStoreFav(favourite);
-            console.debug($scope.favourite);
-
-            //console.log(polecone);
-
-        }
-
 
     }
 })();
