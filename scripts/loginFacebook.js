@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -11,9 +11,9 @@ $(document).ready(function() {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      $('#Lala').hide();
+      $('#welcomeLogin').hide();
       testAPI();
-      $('#Lala').hide();
+      $('#welcomeLogin').hide();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -30,52 +30,47 @@ $(document).ready(function() {
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
   function checkLoginState() {
-    FB.getLoginStatus(function(response) {
+    FB.getLoginStatus(function (response) {
       statusChangeCallback(response);
-      $('#Lala').hide();
+      $('#welcomeLogin').hide();
     });
   }
 
-  window.fbAsyncInit = function() {
+  window.fbAsyncInit = function () {
     FB.init({
-      appId      : '1113880501995933',
-      cookie     : true,  // enable cookies to allow the server to access
-                          // the session
-      xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.5' // use version 2.5
+      appId: '1113880501995933',
+      cookie: true,  // enable cookies to allow the server to access the session
+      xfbml: true,  // parse social plugins on this page
+      version: 'v2.5' // use version 2.5
     });
 
     FB.Event.subscribe('auth.login', function () {
       //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
-      $('#Lala').hide();
+      $('#welcomeLogin').hide();
     });
 
     // Now that we've initialized the JavaScript SDK, we call
     // FB.getLoginStatus().  This function gets the state of the
     // person visiting this page and can return one of three states to
     // the callback you provide.  They can be:
-    //
     // 1. Logged into your app ('connected')
     // 2. Logged into Facebook, but not your app ('not_authorized')
     // 3. Not logged into Facebook and can't tell if they are logged into
     //    your app or not.
-    //
     // These three cases are handled in the callback function.
 
-    FB.getLoginStatus(function(response) {
+    FB.getLoginStatus(function (response) {
       statusChangeCallback(response);
       //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
-      $('#Lala').hide();
-
+      $('#welcomeLogin').hide();
     });
-
   };
-
   // Load the SDK asynchronously
-  (function(d, s, id) {
+  (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
+    js = d.createElement(s);
+    js.id = id;
     js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v2.5&appId=1113880501995933";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
@@ -84,12 +79,9 @@ $(document).ready(function() {
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me', function (response) {
       console.log('Successful login for: ' + response.name);
-      $('#Lala').hide();
+      $('#welcomeLogin').hide();
     });
   }
-
-
-
 });

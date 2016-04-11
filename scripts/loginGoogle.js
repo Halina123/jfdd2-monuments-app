@@ -1,18 +1,20 @@
-
 function onSuccess(googleUser) {
   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+  $('#welcomeLogin').hide();
   $('#Lala').hide();
   //location.reload();
   //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
   localStorage.setItem('login', googleUser.getBasicProfile().getName());
 }
+
 function onFailure(error) {
   console.log(error);
 }
+
 function renderButton() {
   gapi.signin2.render('my-signin2', {
     'scope': 'profile email',
-    'text-align':'center',
+    'text-align': 'center',
     'width': 250,
     'height': 50,
     'longtitle': true,
@@ -21,8 +23,6 @@ function renderButton() {
     'onfailure': onFailure
   });
 }
-
-
 
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
