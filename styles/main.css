@@ -23,19 +23,10 @@ html, body {
     text-align: center;
 }
 
-.images {
-    width: 100%;
-    max-width: 50px;
-}
-
 .icon {
     position: absolute;
     bottom: 0;
     right: 0;
-}
-
-.infoWind .btn-primary.active {
-    background-color: #ff1317;
 }
 
 #filtr .btn {
@@ -43,10 +34,14 @@ html, body {
     height: 50px;
 }
 
-.gm-style img {
-    max-width: 200px;
-}
-
 .navbar-default {
     margin: 0;
+}
+
+.about {
+    text-align: center;
+}
+
+.page {
+    background-color: #f4f4f4;
 }

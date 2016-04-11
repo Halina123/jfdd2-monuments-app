@@ -3,6 +3,8 @@ function onSuccess(googleUser) {
   $('#welcomeLogin').hide();
   $('#myModal').hide();
   $('.modal-backdrop').hide();
+  localStorage.setItem('login', googleUser.getBasicProfile().getEmail());
+
 }
 
 function onFailure(error) {
