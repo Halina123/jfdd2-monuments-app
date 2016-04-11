@@ -1,5 +1,7 @@
 var object = [];
 
+var mainScope;
+
 
 (function () {
   var actualPosition = [];
@@ -282,7 +284,8 @@ var object = [];
       if (favs.indexOf(object.name) === -1) {
         favs.push(object.name);
         object.like = 'favourite';
-        $scope.favourites = favs;
+        //$scope.favourites = favs;
+        mainScope.favourites = favs;
         console.log(favs);
       }
       localStorage.setItem($loginUsera + '1', JSON.stringify(favs));
@@ -344,8 +347,11 @@ var object = [];
   }
 
   function mainController($scope) {
+    mainScope = $scope;
     $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
-    $scope.favourites = favourites;
+    var favs = localStorage.getItem($loginUsera + '1');
+    favs = JSON.parse(favs) || [];
+    $scope.favourites = favs;
     $scope.polecone = polecone;
     $scope.map = {
       center: {
