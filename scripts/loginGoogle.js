@@ -1,10 +1,9 @@
 function onSuccess(googleUser) {
-  console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
   $('#welcomeLogin').hide();
   $('#Lala').hide();
   //location.reload();
   //window.location = "http://localhost:63342/jfdd2-monuments-app/index.html"
-  localStorage.setItem('login', googleUser.getBasicProfile().getName());
+  localStorage.setItem('login', googleUser.getBasicProfile().getEmail());
 }
 
 function onFailure(error) {

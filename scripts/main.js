@@ -280,6 +280,11 @@ var object = [];
                 favourite.push(object.name);
                 object.like = 'favourite';
             }
+        };
+        $scope.openModal = function(){
+            wyczyscForm();
+            $('#obiektPolec').val(object.name);
+            $('#modalPolec').modal('show');
         }
     }
 
@@ -299,14 +304,10 @@ var object = [];
                     }
                 })
             }
-        }
-        $scope.openModal = function(){
-          wyczyscForm();
-          $('#obiektPolec').val(obiekt.nazwa);
-          $('#modalPolec').modal('show');
-        }
+        };
 
-      });
+
+      }
 
     function ModalInstanceCtrl($scope, $uibModalInstance, items) {
         $scope.ok = function () {
@@ -337,6 +338,7 @@ var object = [];
     function mainController($scope) {
         $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
         $scope.favourite = favourite;
+        $scope.polecone = polecone;
         $scope.map = {
             center: {
                 latitude: 54.379208,
@@ -427,8 +429,23 @@ var object = [];
             object = model;
         };
       $scope.loadRecommendations = function () {
-        getStore(polecone);
-      }
+
+        $scope.polecone = getStore(polecone);
+          console.debug($scope.polecone);
+
+          //console.log(polecone);
+
+      };
+        $scope.loadFavourites = function () {
+
+            $scope.favourite = getStoreFav(favourite);
+            console.debug($scope.favourite);
+
+            //console.log(polecone);
+
+        }
+
+
     }
 })();
 
