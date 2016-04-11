@@ -45,7 +45,10 @@ $form.submit(function (item) {
 function numberOfRec () {
     var dane = JSON.parse(localStorage.getItem($loginUsera));
     var ilosc = dane ? dane.length : 0;
+    var daneFav = JSON.parse(localStorage.getItem($loginUsera + '1'));
     $('#numberOfRecommendation').html(ilosc);
+     var iloscFav = daneFav ? daneFav.length : 0;
+    $('#numberOfFavourites').html(iloscFav);
 
 }
 
@@ -63,20 +66,7 @@ function getStore() {
     }
   return polecone;
 }
-function getStoreFav() {
-  var favourite = [];
-    //pobieramy liste poleconych dla danego usera
-    var dane = JSON.parse(localStorage.getItem($loginUsera));
-    var ilosc = dane ? dane.length : 0;
-    //kazdy element z listy dodajemy do dropdowna
-    for(var i = 0; i < ilosc; i++) {
-        if (favourite.indexOf(dane[i]) === -1) {
-          favourite.push({id: i, text: dane[i]});
 
-        }
-    }
-  return polecone;
-}
 //
 //function storeFav() {
 //  var $inputSocialMedia = $('#socialMedia option:selected');
