@@ -15,18 +15,18 @@ function store() {
   //poszukac wpisu w localstorage dla danego maila
     if (localStorage.getItem($inputEmail.val()) === null) {
         //jezeli nie ma to tworzymy nowy\
-        var dane = new Array($loginUsera + ": " + $inputObiekt.val());
+        var dane = new Array($loginUsera + " polecił Tobie zabytek : " + $inputObiekt.val());
         localStorage.setItem($inputEmail.val(), JSON.stringify(dane));
     }
     else {
         //jezeli jest to odczytujemy i dodajemy do listy
         var dane = JSON.parse(localStorage.getItem($inputEmail.val()));
 
-      dane.push($loginUsera + ": " + $inputObiekt.val());
+      dane.push($loginUsera + " polecił Tobie zabytek : " + $inputObiekt.val());
         localStorage.setItem($inputEmail.val(), JSON.stringify(dane));
     }
   $form.css({'display': 'none'});
-  var $alert = $('<p>').addClass('alert').text('Dziękuję za Twoje polecenie zabytku');
+  var $alert = $('<p>').text('Dziękuję za Twoje polecenie zabytku');
   $('#alert').append($alert);
 }
 $(document).ready(function() {
@@ -60,7 +60,7 @@ function getStore() {
     //kazdy element z listy dodajemy do dropdowna
     for(var i = 0; i < ilosc; i++) {
         if (polecone.indexOf(dane[i]) === -1) {
-            polecone.push({id: i, text: "Polecił " + dane[i]});
+            polecone.push({id: i, text: "Użytkownik : " + dane[i]});
 
         }
     }
