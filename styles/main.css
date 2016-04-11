@@ -16,7 +16,7 @@ html, body {
 }
 
 .angular-google-map-container {
-    height: calc(100vh - 102px);
+    height: calc(100vh - 106px);
 }
 
 .infoWind {
