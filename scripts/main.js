@@ -74,9 +74,7 @@ var mainScope;
       'z najbardziej dramatycznych wątków całej kampanii wrześniowej. Pomnik o wysokości 25 m, ' +
       'dzieło Adama Haupta, Franciszka Duszenki oraz Henryka Kitkowskiego, ustawiono na potężnym kopcu ' +
       'i odsłonięto 9 X 1966 r. Monument złożono z bloków granitowych o łącznej wadze 1150 t i przyozdobiono ' +
-      'płaskorzeźbami oraz napisami uwieczniającymi wojenną dramaturgię tamtych czasów. W najbliższej okolicy ' +
-      'obejrzeć również można zabytki związane z heroiczną obroną placówki z 1939 r., groby bohaterskich ' +
-      'żołnierzy oraz czołg T-34 Polskiej Brygady Pancernej im. Bohaterów Westerplatte.',
+      'płaskorzeźbami oraz napisami uwieczniającymi wojenną dramaturgię tamtych czasów.',
       image: '2',
       WHstatus: true,
       ID: 'xxxx'
@@ -143,8 +141,7 @@ var mainScope;
       'do tego, aby ideały ruchu Solidarność – demokracja, społeczeństwo otwarte i solidarne, kultura dialogu ' +
       '– zachowały swoją atrakcyjność i aktualność. Ma zachować w pamięci Polaków i Europejczyków doświadczenie ' +
       'Solidarności jako pokojowej europejskiej rewolucji, aby we wspólnocie europejskich demokracji Solidarność ' +
-      'była ważną częścią mitu założycielskiego Europy. Ma sprawić, by Solidarność była źródłem inspiracji i ' +
-      'nadziei dla tych, którzy nie żyją w społeczeństwach otwartych i demokratycznych.',
+      'była ważną częścią mitu założycielskiego Europy.',
       image: '5',
       WHstatus: false,
       ID: 'xxxx'
@@ -190,8 +187,7 @@ var mainScope;
       'Wysokość rzeźby odlana w brązie ma wysokość ok. 380 cm i orientacyjną wagę ok. 1200 kg. Marszałek był ' +
       'więziony przez tydzień w 1917 roku w areszcie na ul. Kurkowej, który istnieje do dzisiaj. Był przetrzymywany ' +
       'przez tydzień, tak krótko, gdyż Niemcy uwierzyli w pogłoski, że Polacy w całym kraju organizują się zbrojnie, ' +
-      'by odbić przyszłego naczelnika. Razem z Józefem Piłsudskim był więziony gen. Kazimierz Sosnkowski. ' +
-      'Plac na którym stoi pomnik nazywany jest Placem Piłsudskiego.',
+      'by odbić przyszłego naczelnika.',
       image: '7',
       WHstatus: false,
       ID: 'xxxx'
@@ -212,9 +208,7 @@ var mainScope;
       'nautologicznego, poprzez gromadzenie i zabezpieczanie zabytków związanych z żeglugą, szkutnictwem, ' +
       'okrętownictwem, rybołówstwem oraz upowszechniające wiedzę o nich, a także o morskiej historii ' +
       'Polski i jej gospodarce. Muzeum realizuje swoją misję poprzez prace badawcze, konserwację zabytków, ' +
-      'organizację wystaw i uczestnictwo w stowarzyszeniach muzealniczych. Muzeum stara się skupić wokół ' +
-      'siebie ludzi, instytucje, urzędy i firmy związane z gospodarką morską, tak aby móc przy ich wsparciu ' +
-      'realizować swoje cele i wypełniać wyznaczoną misję.',
+      'organizację wystaw i uczestnictwo w stowarzyszeniach muzealniczych.',
       image: '8',
       WHstatus: true,
       ID: 'xxxx'
@@ -237,8 +231,7 @@ var mainScope;
       'posiadłości na Pomorzu. Kościół od początku służył zarówno ludności miejscowej, jak i przybywającym ' +
       'tu licznie ze wszystkich stron świata kupcom i żeglarzom. Jest on najstarszą świątynią w tym mieście ' +
       'a tym samym jednym z najważniejszych świadków jego pięknej i dramatycznej historii. Świadkiem tym ' +
-      'bardziej wiarygodnym, że ocalałym z zawieruchy ostatniej wojny. Gromadzone przez wieki elementy ' +
-      'wyposażenia nadaja mu niepowtarzalną atmosferę.',
+      'bardziej wiarygodnym, że ocalałym z zawieruchy ostatniej wojny.',
       image: '9',
       WHstatus: false,
       ID: 'xxxx'
