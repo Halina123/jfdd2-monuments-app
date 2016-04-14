@@ -54,7 +54,8 @@
              data-toggle="dropdown"
              role="button"
              aria-haspopup="true"
-             aria-expanded="false">Ulubione
+             aria-expanded="false"
+             ng-click="loadFav()">Ulubione
             <span class="badge" id="numberOfFavourites"></span>
             <span class="caret"></span>
           </a>
@@ -224,7 +225,6 @@
     </div>
   </div>
 </div>
-<div ng-controller="ModalDemoCtrl">
   <div ng-controller="ModalDemoCtrl">
     <div ng-controller="ButtonsCtrl" id="filtr">
       <div class="btn-group btn-group-justified">
@@ -251,7 +251,6 @@
       </div>
     </div>
   </div>
-</div>
 <script src="scripts/loginGoogle.js"></script>
 <script src="scripts/loginFacebook.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>

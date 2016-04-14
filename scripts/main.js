@@ -1,16 +1,11 @@
-var object = [];
-
-var mainScope;
-
 
 (function () {
-  var actualPosition = [];
-  var buttonLocalisation;
-  var howMuch;
+  var statusButtonLocalisation;
+  var distance;
   var position;
-  var object = [];
+  var object;
   var favourites = [];
-  var polecone = [];
+  var recomanded = [];
   var monuments = [
     {
       name: 'Bazylika Mariacka',
@@ -238,7 +233,7 @@ var mainScope;
 
     }
   ];
-  var monumentsOK = monuments.map(function (item, index) {
+  var monumentsReformated = monuments.map(function (item, index) {
     return {
       name: item.name,
       type: item.type,
@@ -257,7 +252,7 @@ var mainScope;
       like: ''
     }
   });
-  var fMonumentsOK = monumentsOK;
+  var MonumentsForDisplay = monumentsReformated;
   angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap', 'ngAnimate'])
       .controller('mainController', mainController)
       .controller('ButtonsCtrl', ButtonsCtrl)
@@ -269,18 +264,17 @@ var mainScope;
     $scope.singleModel = 0;
   }
 
-  function InfoController($scope, $log) {
+  function InfoController($scope) {
     $scope.clickedButtonInWindow = function () {
       var favs = localStorage.getItem($loginUsera + '1');
       favs = JSON.parse(favs) || [];
 
       if (favs.indexOf(object.name) === -1) {
+        debugger;
         favs.push(object.name);
         object.like = 'favourite';
-        //$scope.favourites = favs;
-        mainScope.favourites = favs;
-        console.log(favs);
       }
+      favourites = favs;
       localStorage.setItem($loginUsera + '1', JSON.stringify(favs));
       numberOfRec();
 
@@ -292,10 +286,10 @@ var mainScope;
     }
   }
 
-  function ModalDemoCtrl($scope, $uibModal, $log) {
+  function ModalDemoCtrl($scope, $uibModal) {
     $scope.animationsEnabled = true;
     $scope.open = function (size) {
-      if (buttonLocalisation) {
+      if (statusButtonLocalisation) {
         var modalInstance = $uibModal.open({
           animation: $scope.animationsEnabled,
           templateUrl: 'myModalContent.html',
@@ -309,13 +303,11 @@ var mainScope;
         })
       }
     };
-
-
   }
 
-  function ModalInstanceCtrl($scope, $uibModalInstance, items) {
+  function ModalInstanceCtrl($scope, $uibModalInstance) {
     $scope.ok = function () {
-      howMuch = $scope.howMuch;
+      distance = $scope.howMuch;
       $uibModalInstance.close();
     };
     $scope.cancel = function () {
@@ -340,12 +332,8 @@ var mainScope;
   }
 
   function mainController($scope) {
-    mainScope = $scope;
     $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
-    var favs = localStorage.getItem($loginUsera + '1');
-    favs = JSON.parse(favs) || [];
-    $scope.favourites = favs;
-    $scope.polecone = polecone;
+    $scope.polecone = recomanded;
     $scope.map = {
       center: {
         latitude: 54.379208,
@@ -372,8 +360,10 @@ var mainScope;
       },
       clickedMarker: {
         id: 0,
-        latitude: actualPosition[0],
-        longitude: actualPosition[1],
+        latitude: 0,
+        longitude: 0,
+        //latitude: actualPosition[0],
+        //longitude: actualPosition[1],
         options: {
           animation: 1
         }
@@ -392,18 +382,18 @@ var mainScope;
     };
     $scope.$watchCollection('position', checkModel);
     $scope.$watchCollection('checkModel', checkModel);
+
     function checkModel() {
-      buttonLocalisation = $scope.checkModel.lokalizacja;
-      fMonumentsOK = [];
-      monumentsfilredPosition = monumentsOK;
+      statusButtonLocalisation = $scope.checkModel.lokalizacja;
+      MonumentsForDisplay = [];
+      monumentsfilredPosition = monumentsReformated;
       $scope.show = false;
       angular.forEach($scope.checkModel, function (value, key) {
         if (value && key === 'lokalizacja') {
           monumentsfilredPosition = [];
-          monumentsOK.forEach(function (item) {
-            oldeglosc = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
-            console.log(oldeglosc);
-            if (oldeglosc <= howMuch) {
+          monumentsReformated.forEach(function (item) {
+            markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
+            if (markerDistance <= distance) {
               monumentsfilredPosition.push(item)
             }
           })
@@ -411,20 +401,21 @@ var mainScope;
         if (value && key !== 'lokalizacja' && key !== 'wh') {
           monumentsfilredPosition.forEach(function (item, index) {
             if (item.type === key && !$scope.checkModel.wh) {
-              fMonumentsOK.push(item)
+              MonumentsForDisplay.push(item)
             } else if (item.type === key && item.WHstatus) {
-              fMonumentsOK.push(item)
+              MonumentsForDisplay.push(item)
             }
           })
         }
       });
-      $scope.randomMarkers = fMonumentsOK;
+      $scope.randomMarkers = MonumentsForDisplay;
     }
 
     $scope.closeClick = function () {
       $scope.show = false;
     };
     $scope.windowCoords = {};
+
     $scope.onClick = function (marker, eventName, model) {
       $scope.windowCoords.latitude = model.address.position.latitude;
       $scope.windowCoords.longitude = model.address.position.longitude;
@@ -437,11 +428,13 @@ var mainScope;
     };
 
     $scope.loadRecommendations = function () {
-
-      $scope.polecone = getStore(polecone);
+      $scope.polecone = getStore(recomanded);
       console.debug($scope.polecone);
-
     };
+
+    $scope.loadFav = function () {
+      $scope.favourites = favourites;
+    }
 
   }
 })();

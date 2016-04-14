@@ -67,24 +67,6 @@ function getStore() {
   return polecone;
 }
 
-//
-//function storeFav() {
-//  var $inputSocialMedia = $('#socialMedia option:selected');
-//  //poszukac wpisu w localstorage dla danego maila
-//  if (localStorage.getItem($inputEmail.val()) === null) {
-//    //jezeli nie ma to tworzymy nowy\
-//    var dane = new Array($inputObiekt.val());
-//    localStorage.setItem($loginUsera.val(), JSON.stringify(dane));
-//  }
-//  else {
-//    //jezeli jest to odczytujemy i dodajemy do listy
-//    var dane = JSON.parse(localStorage.getItem($inputEmail.val()));
-//
-//    console.log(localStorage.getItem('login'));
-//    dane.push($loginUsera + ": " + $inputObiekt.val());
-//    localStorage.setItem($loginUsera.val(), JSON.stringify(dane));
-//  }
-// }
 
 
 function wyczyscForm(){
