@@ -388,6 +388,9 @@
       MonumentsForDisplay = [];
       monumentsfilredPosition = monumentsReformated;
       $scope.show = false;
+      $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
+      $scope.about = '';
+      $scope.images = 'xxx';
       angular.forEach($scope.checkModel, function (value, key) {
         if (value && key === 'lokalizacja') {
           monumentsfilredPosition = [];
