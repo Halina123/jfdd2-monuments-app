@@ -436,7 +436,7 @@
     };
 
     $scope.loadFav = function () {
-      $scope.favourites = favourites;
+      $scope.favourites = JSON.parse(localStorage.getItem($loginUsera + '1'));
     }
 
   }
