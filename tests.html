@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Tests</title>
+  <title>QUnit - Tests</title>
   <link rel="stylesheet" href="node_modules/qunitjs/qunit/qunit.css">
 </head>
 
@@ -12,6 +12,8 @@
 <div id="qunit-fixture"></div>
 
 <script src="node_modules/qunitjs/qunit/qunit.js"></script>
-<script src="scripts/tests.js"></script>
+<script src="node_modules/blanket/dist/qunit/blanket.min.js"></script>
+<script src="tests/scripts/getDistance.js" data-cover></script>
+<script src="tests/specs/getDistance.js"></script>
 </body>
 </html>
