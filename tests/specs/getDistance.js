@@ -12,6 +12,7 @@ QUnit.test('degrees to radians', function (assert) {
     /Invalid parameter/,
     'Two strings passed'
   );
+
   assert.throws(
     function () {
       dLat('one')
@@ -19,6 +20,7 @@ QUnit.test('degrees to radians', function (assert) {
     /Invalid parameter/,
     'First parameter is a string'
   );
+
   assert.throws(
     function () {
       dLat(undefined, 'one')
@@ -26,6 +28,7 @@ QUnit.test('degrees to radians', function (assert) {
     /Invalid parameter/,
     'Second parameter is a string'
   );
+
   assert.equal(dLon(0, 18.6333), 18.6333, 'subtracting 0° (Greenwich) and 18°38’E (Gdansk)');
   assert.equal(dLon(10.75, 18.6333), 7.883299999999998, 'subtracting 10°45’E (Oslo) and 18°38’E (Gdansk)');
   assert.equal(dLon(18.6333, -74.0059), -92.63919999999999, 'subtracting 18°38’E (Gdansk) and 74°0’21″W (New York City)');
@@ -37,6 +40,7 @@ QUnit.test('degrees to radians', function (assert) {
     /Invalid parameter/,
     'Two strings passed'
   );
+
   assert.throws(
     function () {
       dLon('one')
@@ -44,6 +48,7 @@ QUnit.test('degrees to radians', function (assert) {
     /Invalid parameter/,
     'First parameter is a string'
   );
+
   assert.throws(
     function () {
       dLon(undefined, 'one')
@@ -53,20 +58,19 @@ QUnit.test('degrees to radians', function (assert) {
   );
 });
 
+
 QUnit.test('arcus tangens', function (assert) {
-  assert.equal(Math.atan2(90, 15), 1.4056476493802699, 'Both parameters are given');
-  assert.equal(Math.atan2(15, 90), 0.16514867741462683, 'Both parameters are given');
-  assert.equal(Math.atan2(0, 0), 0, 'Both parameters are given');
-  assert.equal(Math.atan2(Infinity, Infinity), 0.7853981633974483, 'Both parameters are given');
+  assert.equal(2*Math.atan2(Math.sqrt(90), Math.sqrt(15)), 2.366399280279432, 'Counterclockwise angle in radians y = 90, x = 15');
+  assert.equal(2*Math.atan2(Math.sqrt(15), Math.sqrt(90)), 0.7751933733103613, 'Counterclockwise angle in radians y = 15, x = 90');
+  assert.equal(2*Math.atan2(Math.sqrt(0), Math.sqrt(0)), 0, 'Counterclockwise angle in radians y = 0, x = 0');
 });
+
 
 QUnit.test('multiply parameters', function (assert) {
   assert.equal(d(6371, 0.5), 3185.5, 'Multiply 6371 and 0.5');
   assert.equal(d(-20, 10), -200, 'Multiply -20 and 10');
   assert.equal(d(-10, -10), 100, 'Multiply -10 and -10');
   assert.equal(d(6371, 0), 0, 'Multiply 6371 and 0');
-  assert.equal(d(10, undefined), 10, 'Only first parameter is given');
-  assert.equal(d(undefined, 10), 10, 'Only second parameter is given');
   assert.throws(
     function () {
       d('one', 'two')
@@ -74,6 +78,7 @@ QUnit.test('multiply parameters', function (assert) {
     /Invalid parameter/,
     'Two strings passed'
   );
+
   assert.throws(
     function () {
       d('one')
@@ -81,6 +86,7 @@ QUnit.test('multiply parameters', function (assert) {
     /Invalid parameter/,
     'First parameter is a string'
   );
+
   assert.throws(
     function () {
       d(undefined, 'one')
@@ -88,6 +94,7 @@ QUnit.test('multiply parameters', function (assert) {
     /Invalid parameter/,
     'Second parameter is a string'
   );
+
   assert.throws(
     function () {
       d(10)
@@ -95,6 +102,7 @@ QUnit.test('multiply parameters', function (assert) {
     /Two parameters are required/,
     'Passing only first parameter throws exception'
   );
+
   assert.throws(
     function () {
       d(undefined, 10)
