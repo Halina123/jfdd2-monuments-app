@@ -10,30 +10,43 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
   return d;
 }
 
-var dLat = function (lat1, lat2) {
+var dLat = function(lat1, lat2) {
   lat1 = lat1 || 0;
   lat2 = lat2 || 0;
 
   if (typeof lat1 == 'string' || typeof lat2 == 'string')
     throw 'Invalid parameter type';
 
-  if (lat1 == undefined || lat2 == undefined) {
-    throw 'Two parameters are required';
-  }
-
   return lat2 - lat1;
 };
 
-var dLon = function (lon1, lon2) {
+var dLon = function(lon1, lon2) {
   lon1 = lon1 || 0;
   lon2 = lon2 || 0;
 
   if (typeof lon1 == 'string' || typeof lon2 == 'string')
     throw 'Invalid parameter type';
 
-  if (lon1 == undefined || lon2 == undefined) {
+  return lon2 - lon1;
+};
+
+var c = function(a) {
+
+  if (typeof a == 'string' || typeof a == undefined)
+    throw 'Invalid parameter type';
+
+  return 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+};
+
+var d = function (R, c) {
+
+  if (typeof R == 'string' || typeof c == 'string') {
+    throw 'Invalid parameter type';
+  }
+
+  if (R == undefined || c == undefined){
     throw 'Two parameters are required';
   }
 
-  return lon2 - lon1;
-};
+  return R * c;
+},
