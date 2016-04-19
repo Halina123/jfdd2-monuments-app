@@ -49,4 +49,4 @@ var d = function (R, c) {
   }
 
   return R * c;
-},
+};
