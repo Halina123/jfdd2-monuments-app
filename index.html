@@ -72,6 +72,7 @@
              ng-click="loadRecommendations()">Polecone&nbsp;
             <span class="badge" id="numberOfRecommendation"></span>
             <span class="caret"></span></a>
+        <li><a href="#"onclick="signOut();">>Wyloguj</a></li>
           <ul class="dropdown-menu">
             <li ng-repeat="x in polecone"><a href="#">{{x.text}} </a></li>
           </ul>
@@ -166,6 +167,7 @@
                   Poleć
                 </label>
               </div>
+
               <div class="col-sm-6 col-xs-6">
                 <label id="mojBut"
                        class="btn btn-primary right"
