@@ -409,7 +409,7 @@
           })
         }
       });
-      debugger;
+
       $scope.randomMarkers = MonumentsForDisplay;
     }
 
