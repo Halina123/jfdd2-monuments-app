@@ -7,6 +7,7 @@
   var URL = 'http://isa-api-sl.herokuapp.com/api';
   var  MonumentsFromServer;
   var przelacznik = false;
+  var zapytanie;
 
   //var monuments = [
   //  {
@@ -331,34 +332,23 @@
   }
 
   function mainController($scope) {
-    function getMonuments () {
+    function getMonuments (filter) {
+      debugger;
       $.ajax({
         type: 'GET',
-        // url: URL + '/monuments?filter[where][or][0][type]=church&filter[where][or][1][type]=monument',
-        url: URL + '/monuments',
+        url: URL + '/monuments?' + filter,
+        // url: URL + '/monuments',
         dataType: 'json',
         success: function(result) {
+          debugger;
           MonumentsFromServer = result ;
           przelacznik = true;
-          checkModel();
           console.info("dane z serwera pobrane")
+          update();
         }
       });
     }
-    getMonuments();
-    //getFavOrRec = function (){
-    //  $.ajax({
-    //    type: 'POST',
-    //    url: URL + '/monuments_' + login,
-    //    dataType: 'json',
-    //    success: function(result) {
-    //          favourites = result.result.favourites;
-    //          recommanded = result.result.recommanded;
-    //
-    //
-    //    }
-    //  });
-    //};
+
     $scope.randomMarkers = [];
     $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
     $scope.polecone = recommanded;
@@ -403,15 +393,17 @@
     };
     $scope.checkModel = {
       lokalizacja: false,
-      church: true,
-      museum: true,
-      monument: true,
+      church: false,
+      museum: false,
+      monument: false,
       wh: false
     };
-    $scope.$watchCollection('position', checkModel);
+    // $scope.$watchCollection('position', checkModel);
     $scope.$watchCollection('checkModel', checkModel);
 
     function checkModel() {
+      var licznik = 0;
+      zapytanie = '' ;
       statusButtonLocalisation = $scope.checkModel.lokalizacja;
       MonumentsForDisplay = [];
       monumentsfilredPosition = MonumentsFromServer;
@@ -419,29 +411,43 @@
       $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
       $scope.about = '';
       $scope.images = 'xxx';
+      debugger;
       angular.forEach($scope.checkModel, function (value, key) {
-        if (value && key === 'lokalizacja') {
-          monumentsfilredPosition = [];
-          MonumentsFromServer.forEach(function (item) {
-            markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
-            if (markerDistance <= distance) {
-              monumentsfilredPosition.push(item)
-            }
-          })
-        }
-        if (value && key !== 'lokalizacja' && key !== 'wh' && przelacznik === true) {
-          monumentsfilredPosition.forEach(function (item, index) {
-            if (item.type === key && !$scope.checkModel.wh) {
-              MonumentsForDisplay.push(item)
-            } else if (item.type === key && item.WHstatus) {
-              MonumentsForDisplay.push(item)
-            }
-          })
+        if (value && key != 'wh' && key != 'lokalizacja'){
+          licznik++
         }
       });
+      angular.forEach($scope.checkModel, function (value, key) {
+        debugger;
+        // if (value && key === 'lokalizacja') {
+        //   monumentsfilredPosition = [];
+        //   MonumentsFromServer.forEach(function (item) {
+        //     markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
+        //     if (markerDistance <= distance) {
+        //       monumentsfilredPosition.push(item)
+        //     }
+        //   })
+        // }
 
-      $scope.randomMarkers = MonumentsForDisplay;
+        if (value && key !== 'lokalizacja' && key !== 'wh' && licznik > 1) {
+          zapytanie += '&filter[where][type][inq]=' + key
+        }  else if (value && key !== 'lokalizacja' && key !== 'wh') {
+          zapytanie += '&filter[where][type]=' + key
+        }
+          if (value && key === 'wh') {
+            zapytanie += '&filter[where][WHstatus]=true'
+          }
+      });
+      debugger;
+      console.log(zapytanie);
+getMonuments(zapytanie);
+
     }
+    function update () {
+      $scope.randomMarkers = MonumentsFromServer;
+      $scope.$apply();
+    }
+
 
     $scope.closeClick = function () {
       $scope.show = false;
