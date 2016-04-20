@@ -109,13 +109,14 @@
       </div>
       <div class="modal-body">
         <div id="my-signin2"></div>
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        <div class="facebookLogin">
+        <fb:login-button width="200px" size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
+        </div>
 
 
         <div id="status">
         </div>
-        <a href="#" onclick="signOut();">Wyloguj</a>
 
         <p></p>
       </div>
