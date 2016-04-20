@@ -5,53 +5,38 @@
 var $form = $('#form');
 var $inputEmail = $('#email');
 var $inputObiekt = $('#obiektPolec');
-
+var $inputLogin = $('#loginPolec');
 
 function store() {
-  var polecany = [login + " polecił Tobie zabytek : " + $inputObiekt.val()];
-  $.ajax({
-    type: 'GET',
-    url: URL + '/monuments-' + $inputEmail,
-    dataType: 'json',
-    success: function(result) {
-      if (result.result != undefined){
-          if (result.result.recommanded != undefined){
-            if (result.result.recommanded.indexOf(polecany) === -1) {
-              result.result.recommanded.push(polecany);
-            } else return;
-        } else {result.result.recommanded = polecany }
-        numberOfRec()
-      } else {result.result.recommanded = polecany}
         $.ajax({
-          type: 'POST',
-          url: URL + '/monuments-' + $inputEmail,
-          dataType: 'json',
-          data: result,
-          success: function () {
-            console.log("dodano nowego użytkownika oraz dodano mu polecenie")
-          }
+            type: 'get',
+            url: URL + '/recommendations?filter[where][appId]=monuments&filter[where][objectId]=' + object.name +
+            '&filter[where][receiverId]=' + $inputEmail.val() + '&filter[where][senderId]=' + login,
+            dataType: 'json',
+            success: function (result) {
+                if (result.length === 0) {
+                     toAddRec = {
+                        "appId": "monuments",
+                        "senderId": login,
+                        "receiverId": $inputEmail.val(),
+                        "objectType": "REC",
+                        "objectId": object.name,
+                        "id": 0
+                    };
+                    $.ajax({
+                        type: 'POST',
+                        url: URL + '/recommendations',
+                        dataType: 'json',
+                        data: toAddRec,
+                        success: function () {
+                            checkOnLogin();
+                        }
+                    });
+                }
+            }
         });
 
-    }
-  });
 
-
-
-
-  var $inputSocialMedia = $('#socialMedia option:selected');
-  //poszukac wpisu w localstorage dla danego maila
-    if (localStorage.getItem($inputEmail.val()) === null) {
-        //jezeli nie ma to tworzymy nowy\
-        var dane = new Array($loginUsera + " polecił Tobie zabytek : " + $inputObiekt.val());
-        localStorage.setItem($inputEmail.val(), JSON.stringify(dane));
-    }
-    else {
-        //jezeli jest to odczytujemy i dodajemy do listy
-        var dane = JSON.parse(localStorage.getItem($inputEmail.val()));
-
-      dane.push($loginUsera + " polecił Tobie zabytek : " + $inputObiekt.val());
-        localStorage.setItem($inputEmail.val(), JSON.stringify(dane));
-    }
   $form.css({'display': 'none'});
   var $alert = $('<p>').text('Dziękuję za Twoje polecenie zabytku');
   $('#alert').append($alert);

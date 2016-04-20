@@ -249,33 +249,33 @@
   }
 
   function InfoController($scope) {
-    $scope.AddToFavourites = function() {
+    $scope.AddToFavourites = function () {
       $.ajax({
         type: 'get',
-        url: URL + '/favs?filter[where][appId]=monuments&filter[where][userId]=' + login  ,
+        url: URL + '/favs?filter[where][appId]=monuments&filter[where][objectId]=' + object.name + '&filter[where][userId]=' + login,
         dataType: 'json',
-        success: function(result) {
-          if (result.result.favourites != undefined){
-            if (result.result.favourites.indexOf(object.name) === -1) {
-            result.result.favourites.push(object.name);
-            } else return;
-          } else {result.result.favourites = [object.name]}
-          $.ajax({
-            type: 'POST',
-            url: URL + '/favs',
-            dataType: 'json',
-            data: JSON.stringify({}),
-            success: function () {
-              favourites = result.result.favourites;
-              numberOfRec();
-            }
-
-          });
-
+        success: function (result) {
+          if (result.length === 0) {
+            debugger;
+            toAdd = {
+              "appId": "monuments",
+              "objectType": "favourite",
+              "objectId": object.name,
+              "userId": login,
+              "id": 0
+            };
+            $.ajax({
+              type: 'POST',
+              url: URL + '/favs',
+              dataType: 'json',
+              data: toAdd,
+              success: function () {
+                checkOnLogin();
+              }
+            });
+          }
         }
       });
-
-
     };
 
     $scope.openModal = function () {
@@ -331,10 +331,10 @@
   }
 
   function mainController($scope) {
-    getMonuments = function() {
+    function getMonuments () {
       $.ajax({
         type: 'GET',
-        //url: URL + '/monuments?filter[where][or][0][type]=church&filter[where][or][1][type]=monument',
+        // url: URL + '/monuments?filter[where][or][0][type]=church&filter[where][or][1][type]=monument',
         url: URL + '/monuments',
         dataType: 'json',
         success: function(result) {
@@ -344,7 +344,7 @@
           console.info("dane z serwera pobrane")
         }
       });
-    };
+    }
     getMonuments();
     //getFavOrRec = function (){
     //  $.ajax({

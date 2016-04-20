@@ -1,40 +1,44 @@
 var login;
+function checkOnLogin() {
+  $.ajax({
+    type: 'GET',
+    url: URL + '/favs?filter[where][appId]=monuments&filter[where][userId]=' + login,
+    dataType: 'json',
+    success: function (result) {
+      if (result.length != 0) {
+        console.log(result + "to jest wynik resulta przy odswiezaniu");
+        favourites = [];
+        result.forEach(function (val){
+            favourites.push(val.objectId)
+        });
+        numberOfRec()
+      }
+    }
+  });
+  $.ajax({
+    type: 'GET',
+    url: URL + '/recommendations?filter[where][appId]=monuments&filter[where][receiverId]=' + login,
+    dataType: 'json',
+    success: function (result) {
+      if (result.length != 0) {
+        debugger;
+        recommanded = [];
+        result.forEach(function (val){
+          recommanded.push('Użytkownik: ' + val.senderId + ' polecił ' + val.objectId);
+        });
+        numberOfRec()
+      }
+    }
+  });
+
+}
 function onSuccess(googleUser) {
   console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
   $('#welcomeLogin').hide();
   $('#myModal').hide();
   $('.modal-backdrop').hide();
   login = googleUser.getBasicProfile().getEmail();
-  function checkOnLogin() {
-    $.ajax({
-      type: 'GET',
-      url: URL + '/favs?filter[where][appId]=monuments&filter[where][userId]=' + login,
-      dataType: 'json',
-      success: function (result) {
-        if (result.length != 0) {
-          result.forEach(function (val){
-            favourites.push(val.objectId)
-          });
-          numberOfRec()
-        }
-      }
-    });
-    $.ajax({
-      type: 'GET',
-      url: URL + '/recommendations?filter[where][appId]=monuments&filter[where][receiverId]=' + login,
-      dataType: 'json',
-      success: function (result) {
-        if (result.length != 0) {
-          debugger;
-          result.forEach(function (val){
-            recommanded.push(val.objectId);
-          });
-          numberOfRec()
-        }
-      }
-    });
 
-  }
   checkOnLogin();
 }
 
