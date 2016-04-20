@@ -3,10 +3,11 @@
   var position;
   var object;
   var favourites = [];
-  var recomanded = [];
-  var URL = 'https://isa-api2.herokuapp.com/fav';
+  var recommanded = [];
+  var URL = 'http://isa-api-sl.herokuapp.com/api';
   var  MonumentsFromServer;
   var przelacznik = false;
+
   //var monuments = [
   //  {
   //    name: 'Bazylika Mariacka',
@@ -248,20 +249,35 @@
   }
 
   function InfoController($scope) {
-    $scope.clickedButtonInWindow = function () {
-      var favs = localStorage.getItem($loginUsera + '1');
-      favs = JSON.parse(favs) || [];
+    $scope.AddToFavourites = function() {
+      $.ajax({
+        type: 'get',
+        url: URL + '/favs?filter[where][appId]=monuments&filter[where][userId]=' + login  ,
+        dataType: 'json',
+        success: function(result) {
+          if (result.result.favourites != undefined){
+            if (result.result.favourites.indexOf(object.name) === -1) {
+            result.result.favourites.push(object.name);
+            } else return;
+          } else {result.result.favourites = [object.name]}
+          $.ajax({
+            type: 'POST',
+            url: URL + '/favs',
+            dataType: 'json',
+            data: JSON.stringify({}),
+            success: function () {
+              favourites = result.result.favourites;
+              numberOfRec();
+            }
 
-      if (favs.indexOf(object.name) === -1) {
-        debugger;
-        favs.push(object.name);
-        object.like = 'favourite';
-      }
-      favourites = favs;
-      localStorage.setItem($loginUsera + '1', JSON.stringify(favs));
-      numberOfRec();
+          });
+
+        }
+      });
+
 
     };
+
     $scope.openModal = function () {
       wyczyscForm();
       $('#obiektPolec').val(object.name);
@@ -318,10 +334,11 @@
     getMonuments = function() {
       $.ajax({
         type: 'GET',
+        //url: URL + '/monuments?filter[where][or][0][type]=church&filter[where][or][1][type]=monument',
         url: URL + '/monuments',
         dataType: 'json',
         success: function(result) {
-          MonumentsFromServer = result.result ;
+          MonumentsFromServer = result ;
           przelacznik = true;
           checkModel();
           console.info("dane z serwera pobrane")
@@ -329,9 +346,22 @@
       });
     };
     getMonuments();
+    //getFavOrRec = function (){
+    //  $.ajax({
+    //    type: 'POST',
+    //    url: URL + '/monuments_' + login,
+    //    dataType: 'json',
+    //    success: function(result) {
+    //          favourites = result.result.favourites;
+    //          recommanded = result.result.recommanded;
+    //
+    //
+    //    }
+    //  });
+    //};
     $scope.randomMarkers = [];
     $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
-    $scope.polecone = recomanded;
+    $scope.polecone = recommanded;
     $scope.map = {
       center: {
         latitude: 54.379208,
@@ -378,8 +408,8 @@
       monument: true,
       wh: false
     };
-    //$scope.$watchCollection('position', checkModel);
-    //$scope.$watchCollection('checkModel', checkModel);
+    $scope.$watchCollection('position', checkModel);
+    $scope.$watchCollection('checkModel', checkModel);
 
     function checkModel() {
       statusButtonLocalisation = $scope.checkModel.lokalizacja;
@@ -430,12 +460,13 @@
     };
 
     $scope.loadRecommendations = function () {
-      $scope.polecone = getStore(recomanded);
-      console.debug($scope.polecone);
+      $scope.polecone = recommanded;
+      debugger;
     };
 
     $scope.loadFav = function () {
-      $scope.favourites = JSON.parse(localStorage.getItem($loginUsera + '1'));
+       $scope.favourites = favourites;
+
     }
 
   }

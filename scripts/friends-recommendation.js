@@ -1,16 +1,43 @@
 /**
  * Created by michal on 07.04.16.
  */
-var $loginUsera = localStorage.getItem('login');
-//var $loginUsera = 'michal.fraczyk@wp.pl';
 
 var $form = $('#form');
-var $inputLogin = $('#loginPolec');
 var $inputEmail = $('#email');
 var $inputObiekt = $('#obiektPolec');
 
 
 function store() {
+  var polecany = [login + " polecił Tobie zabytek : " + $inputObiekt.val()];
+  $.ajax({
+    type: 'GET',
+    url: URL + '/monuments-' + $inputEmail,
+    dataType: 'json',
+    success: function(result) {
+      if (result.result != undefined){
+          if (result.result.recommanded != undefined){
+            if (result.result.recommanded.indexOf(polecany) === -1) {
+              result.result.recommanded.push(polecany);
+            } else return;
+        } else {result.result.recommanded = polecany }
+        numberOfRec()
+      } else {result.result.recommanded = polecany}
+        $.ajax({
+          type: 'POST',
+          url: URL + '/monuments-' + $inputEmail,
+          dataType: 'json',
+          data: result,
+          success: function () {
+            console.log("dodano nowego użytkownika oraz dodano mu polecenie")
+          }
+        });
+
+    }
+  });
+
+
+
+
   var $inputSocialMedia = $('#socialMedia option:selected');
   //poszukac wpisu w localstorage dla danego maila
     if (localStorage.getItem($inputEmail.val()) === null) {
@@ -36,19 +63,22 @@ $form.submit(function (item) {
       return false;
     }
     store();
-    numberOfRec();
   });
-   numberOfRec();
 
 });
 
+//function numberOfRec () {
+//    var dane = JSON.parse(localStorage.getItem($loginUsera));
+//    var ilosc = dane ? dane.length : 0;
+//    var daneFav = JSON.parse(localStorage.getItem($loginUsera + '1'));
+//    $('#numberOfRecommendation').html(ilosc);
+//     var iloscFav = daneFav ? daneFav.length : 0;
+//    $('#numberOfFavourites').html(iloscFav);
+//
+//}
 function numberOfRec () {
-    var dane = JSON.parse(localStorage.getItem($loginUsera));
-    var ilosc = dane ? dane.length : 0;
-    var daneFav = JSON.parse(localStorage.getItem($loginUsera + '1'));
-    $('#numberOfRecommendation').html(ilosc);
-     var iloscFav = daneFav ? daneFav.length : 0;
-    $('#numberOfFavourites').html(iloscFav);
+    $('#numberOfRecommendation').html(recommanded.length);
+    $('#numberOfFavourites').html(favourites.length);
 
 }
 
