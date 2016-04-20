@@ -374,6 +374,7 @@
           position = [$scope.map.clickedMarker.latitude, $scope.map.clickedMarker.longitude];
           $scope.position = position;
           $scope.$apply();
+          update();
         }
       },
       clickedMarker: {
@@ -418,18 +419,7 @@
         }
       });
       angular.forEach($scope.checkModel, function (value, key) {
-        debugger;
-        // if (value && key === 'lokalizacja') {
-        //   monumentsfilredPosition = [];
-        //   MonumentsFromServer.forEach(function (item) {
-        //     markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
-        //     if (markerDistance <= distance) {
-        //       monumentsfilredPosition.push(item)
-        //     }
-        //   })
-        // }
-
-        if (value && key !== 'lokalizacja' && key !== 'wh' && licznik > 1) {
+          if (value && key !== 'lokalizacja' && key !== 'wh' && licznik > 1) {
           zapytanie += '&filter[where][type][inq]=' + key
         }  else if (value && key !== 'lokalizacja' && key !== 'wh') {
           zapytanie += '&filter[where][type]=' + key
@@ -444,6 +434,18 @@ getMonuments(zapytanie);
 
     }
     function update () {
+      if ($scope.checkModel.lokalizacja == true ){
+        monumentsfilredPosition = [];
+        MonumentsFromServer.forEach(function (item) {
+          markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
+          if (markerDistance <= distance) {
+            monumentsfilredPosition.push(item)
+          }
+        });
+        $scope.randomMarkers = monumentsfilredPosition;
+        $scope.$apply();
+        return
+      }
       $scope.randomMarkers = MonumentsFromServer;
       $scope.$apply();
     }
