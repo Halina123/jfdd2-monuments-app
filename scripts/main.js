@@ -264,7 +264,7 @@
     $scope.singleModel = 0;
   }
 
-  function InfoController($scope) {
+  function InfoController($scope,$log) {
     $scope.clickedButtonInWindow = function () {
       var favs = localStorage.getItem($loginUsera + '1');
       favs = JSON.parse(favs) || [];
@@ -276,6 +276,7 @@
       }
       favourites = favs;
       localStorage.setItem($loginUsera + '1', JSON.stringify(favs));
+      $log.info('dodano ulubione');
       numberOfRec();
 
     };
@@ -397,7 +398,7 @@
           monumentsReformated.forEach(function (item) {
             markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
             if (markerDistance <= distance) {
-              monumentsfilredPosition.push(item)
+              monumentsfilredPosition.push(item);
             }
           })
         }
@@ -445,6 +446,7 @@
 function hideF(target) {
   document.getElementById(target).style.display = 'none';
 }
+
 
 
 
