@@ -47,7 +47,6 @@
     </div>
     <div class="collapse navbar-collapse" id="menu">
       <ul class=" nav navbar-nav navbar-right">
-        <li><a href="#">Katalog</a></li>
         <li class="dropdown">
           <a href="#"
              class="dropdown-toggle"
@@ -76,6 +75,8 @@
             <li ng-repeat="x in polecone"><a href="#">{{x}} </a></li>
           </ul>
         </li>
+        <li><a id="fbLogOut" href="http://localhost:63342/jfdd2-monuments-app/index.html" onclick="FB.logout(),signOut();">Wyloguj</a></li>
+
       </ul>
     </div>
   </div>
@@ -108,12 +109,14 @@
       </div>
       <div class="modal-body">
         <div id="my-signin2"></div>
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        <div class="facebookLogin">
+        <fb:login-button width="200px" size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
+        </div>
+
 
         <div id="status">
         </div>
-        <a href="#" onclick="signOut();">Wyloguj</a>
 
         <p></p>
       </div>
@@ -166,6 +169,7 @@
                   Poleć
                 </label>
               </div>
+
               <div class="col-sm-6 col-xs-6">
                 <label id="mojBut"
                        class="btn btn-primary right"

@@ -80,3 +80,19 @@ function testAPI() {
       'Thanks for logging in, ' + response.name + '!';
   });
 }
+
+
+$(document).ready(function(){
+
+  $('#fbLogOut').click(function(e){
+    e.preventDefault();
+    FB.logout(function(response) {
+      // user is now logged out
+      var url = $(this).attr("http://localhost:63342/jfdd2-monuments-app/index.html");
+      window.location.href = "http://localhost:63342/jfdd2-monuments-app/index.html";
+      location.reload()
+
+    });
+  });
+
+});
