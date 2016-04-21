@@ -72,11 +72,12 @@
              ng-click="loadRecommendations()">Polecone&nbsp;
             <span class="badge" id="numberOfRecommendation"></span>
             <span class="caret"></span></a>
-        <li><a id="fbLogOut" href="http://localhost:63342/jfdd2-monuments-app/index.html" onclick="FB.logout(),signOut();">Wyloguj</a></li>
           <ul class="dropdown-menu">
             <li ng-repeat="x in polecone"><a href="#">{{x}} </a></li>
           </ul>
         </li>
+        <li><a id="fbLogOut" href="http://localhost:63342/jfdd2-monuments-app/index.html" onclick="FB.logout(),signOut();">Wyloguj</a></li>
+
       </ul>
     </div>
   </div>

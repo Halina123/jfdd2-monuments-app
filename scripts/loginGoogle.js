@@ -54,7 +54,7 @@ function onFailure(error) {
       'theme': 'dark',
       'onsuccess': function (googleUser) {
         onSuccess(googleUser);
-        $log.info('User signed in');
+        //$log.info('User signed in');
       },
       'onfailure': onFailure
     });
