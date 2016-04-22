@@ -6,7 +6,6 @@ function checkOnLogin() {
         dataType: 'json',
         success: function (result) {
             if (result.length != 0) {
-                console.log(result + "to jest wynik resulta przy odswiezaniu");
                 favourites = [];
                 result.forEach(function (val) {
                     favourites.push(val.objectId)
@@ -65,7 +64,6 @@ function popular() {
                         return b.occurrences - a.occurrences
                     });
                     popularItems = popularItems.slice(0,3);
-                    debugger;
                 }
             });
         }
@@ -90,7 +88,6 @@ function onSuccess(googleUser) {
     $('.modal-backdrop').hide();
     login = googleUser.getBasicProfile().getEmail();
     checkOnLogin();
-    debugger;
 
 }
 

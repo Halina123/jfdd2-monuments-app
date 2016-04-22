@@ -1,7 +1,7 @@
 /**
  * Created by drwal on 22.04.16.
  */
-function mainController($scope) {
+function mainController($scope,$log) {
   function getMonuments(filter, callback) {
     $.ajax({
       type: 'GET',
@@ -40,6 +40,8 @@ function mainController($scope) {
         $scope.position = position;
         $scope.$apply();
         update();
+        $log.info('zapisano do zmiennej współrzędne klikniętego na mapie miejsca');
+
       }
     },
     clickedMarker: {
@@ -90,9 +92,8 @@ function mainController($scope) {
         filterSentence += '&filter[where][WHstatus]=true'
       }
     });
-    console.log(filterSentence);
     getMonuments(filterSentence + '&filter[fields][id]=true&filter[fields][name]=true&filter[fields][address]=true&filter[fields][image]=true', callBack);
-
+    $log.info('pobrano przefiltrowane zabytki')
   }
 
   function callBack(result) {
@@ -103,12 +104,16 @@ function mainController($scope) {
   function update() {
     if ($scope.checkModel.lokalizacja == true) {
       monumentsfilredPosition = [];
-      MonumentsFromServer.forEach(function (item) {
-        markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
-        if (markerDistance <= distance) {
-          monumentsfilredPosition.push(item)
-        }
-      });
+
+      if (position != undefined){
+        MonumentsFromServer.forEach(function (item) {
+          markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
+          if (markerDistance <= distance) {
+            monumentsfilredPosition.push(item)
+          }
+        });
+      }
+
       $scope.randomMarkers = monumentsfilredPosition;
       $scope.$apply();
       return
@@ -134,15 +139,19 @@ function mainController($scope) {
       object = model;
       $scope.$apply();
     }
+    $log.info('pobrano z servera szczegóły zabytku')
   };
 
   $scope.loadRecommendations = function () {
     $scope.polecone = recommended;
+    $log.info('załadowano aktualną liste rekomendacje')
   };
   $scope.loadPopular = function () {
     $scope.popularItems = popularItems;
+    $log.info('załadowano aktualną liste popularne')
   };
   $scope.loadFav = function () {
+    $log.info('załadowano aktualną liste ulubione');
     $scope.favourites = favourites;
   }
 

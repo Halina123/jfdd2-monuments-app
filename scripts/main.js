@@ -56,9 +56,10 @@ function InfoController($scope) {
   }
 }
 
-function ModalDemoCtrl($scope, $uibModal) {
+function ModalDemoCtrl($scope, $uibModal, $log) {
   $scope.animationsEnabled = true;
   $scope.open = function (size) {
+    $log.info('otworzono menu filtrowania po lokalizacji');
     if (statusButtonLocalisation) {
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
