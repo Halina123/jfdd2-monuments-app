@@ -11,19 +11,22 @@
 
 #login {
     border: black solid 2px;
-    width: 40%;
-    min-width: 300px;
-    height:150px;
+    border-radius: 10px;
+    width: 30%;
+    min-width: 320px;
+    height: 170px;
     position: relative;
-    background: #2b5e8b;
+    background: rgba(0, 0, 0, 0.8);
     display: inline-block;
-    top:40%;
+    top: 20px;
+    font-weight: bold;
 }
 
 .loginTitle {
-    margin-top:2%;
+    margin-top: 5%;
     margin-bottom: 5%;
-    font-size:20px;
+    font-size: 25px;
+    letter-spacing: -1px;
     color: white;
 }
 
@@ -36,10 +39,30 @@
     text-align: center;
 }
 
-.titleApp {
-    font-size: 50px;
-}
 .facebookLogin {
     width:300px;
     margin-top: 20px;
+}
+
+.powitanie {
+    height: 250px;
+    width: 100%;
+}
+
+.powitanie h2, .powitanie h3 {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    font-size: 39px;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    letter-spacing: -1px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px;
+}
+
+.powitanie h3 {
+    top: 88px;
+    font-size: 27px;
 }
