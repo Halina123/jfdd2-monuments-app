@@ -28,7 +28,6 @@ function InfoController($scope) {
       dataType: 'json',
       success: function (result) {
         if (result.length === 0) {
-          debugger;
           toAdd = {
             "appId": "monuments",
             "objectType": "favourite",
@@ -104,7 +103,6 @@ function deg2rad(deg) {
 
 function mainController($scope) {
   function getMonuments(filter) {
-    debugger;
     $.ajax({
       type: 'GET',
       url: URL + '/monuments?' + filter,
@@ -178,7 +176,6 @@ function mainController($scope) {
     $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
     $scope.about = '';
     $scope.images = 'xxx';
-    debugger;
     angular.forEach($scope.checkModel, function (value, key) {
       if (value && key != 'wh' && key != 'lokalizacja') {
         licznik++
@@ -194,7 +191,6 @@ function mainController($scope) {
         filterSentence += '&filter[where][WHstatus]=true'
       }
     });
-    debugger;
     console.log(filterSentence);
     getMonuments(filterSentence);
 
@@ -235,7 +231,6 @@ function mainController($scope) {
 
   $scope.loadRecommendations = function () {
     $scope.polecone = recommended;
-    debugger;
   };
   $scope.loadFav = function () {
     $scope.favourites = favourites;

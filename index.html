@@ -83,12 +83,16 @@
 </nav>
 
 <div id="welcomeLogin">
-  <p class="titleApp">Wybierz się z nami w podróż po Gdańsku</p>
+  <div class='powitanie'>
+    <h2>Zabytki Gdańska</h2>
 
+    <h3>Dokąd dziś pójdziemy?</h3>
+  </div>
   <div id="login">
-    <p class="loginTitle">Zaloguj się do naszej aplikacji za pomocą Google</p>
+    <p class="loginTitle">Zaloguj się do naszej aplikacji</p>
     <button type="button"
-            class="btn btn-info btn-lg"
+            class="btn btn-primary
+             btn-lg"
             data-toggle="modal"
             data-target="#myModal">Zaloguj
     </button>
@@ -113,12 +117,7 @@
         <fb:login-button width="200px" size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
         </div>
-
-
-        <div id="status">
-        </div>
-
-        <p></p>
+        <div id="status"></div>
       </div>
       <div class="modal-footer">
         <button type="button"
@@ -217,12 +216,8 @@
                 </form>
                 <div id="alert"></div>
               </section>
-
             </div>
-            <div class="modal-footer">
-
-            </div>
-
+            <div class="modal-footer"></div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
