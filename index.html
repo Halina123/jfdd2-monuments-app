@@ -58,7 +58,7 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li ng-repeat="x in favourites"><a href="#">{{x}}</a></li>
+            <li ng-repeat="x in favourites"><a href="#"><b>{{x}}</b></a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -71,7 +71,7 @@
             <span class="badge" id="numberOfRecommendation"></span>
             <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-repeat="x in polecone"><a href="#">{{x}} </a></li>
+            <li ng-repeat="x in polecone"><a href="#"><b>{{x.what}}</b> <p>polecił: {{x.user}}</p> </a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -81,12 +81,12 @@
              role="button"
              aria-haspopup="true"
              aria-expanded="false"
-             ng-click="loadPopular()">Popularne
+             ng-click="loadPopular()">TOP 3 Zabytków
             <span class="badge" ></span>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li ng-repeat="x in popularItems"><a href="#">{{x.name}}&nbsp;&nbsp;&nbsp;<b>Popularność:&nbsp;{{x.occurrences}}</b></a></li>
+            <li ng-repeat="x in popularItems"><a href="#"><b>{{x.name}}</b><p>Popularność:&nbsp;{{x.occurrences}}</p></a></li>
           </ul>
         </li>
         <li><a id="fbLogOut" href="http://localhost:63342/jfdd2-monuments-app/index.html" onclick="FB.logout(),signOut();">Wyloguj</a></li>
