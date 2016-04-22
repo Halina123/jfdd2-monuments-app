@@ -25,7 +25,6 @@
       version    : 'v2.6'
     });
   };
-
   (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
@@ -47,7 +46,6 @@
     </div>
     <div class="collapse navbar-collapse" id="menu">
       <ul class=" nav navbar-nav navbar-right">
-        <li><a href="#">Katalog</a></li>
         <li class="dropdown">
           <a href="#"
              class="dropdown-toggle"
@@ -91,18 +89,24 @@
             <li ng-repeat="x in popularItems"><a href="#">{{x.name}}&nbsp;&nbsp;&nbsp;<b>Popularność:&nbsp;{{x.occurrences}}</b></a></li>
           </ul>
         </li>
+        <li><a id="fbLogOut" href="http://localhost:63342/jfdd2-monuments-app/index.html" onclick="FB.logout(),signOut();">Wyloguj</a></li>
+
       </ul>
     </div>
   </div>
 </nav>
 
 <div id="welcomeLogin">
-  <p class="titleApp">Wybierz się z nami w podróż po Gdańsku</p>
+  <div class='powitanie'>
+    <h2>Zabytki Gdańska</h2>
 
+    <h3>Dokąd dziś pójdziemy?</h3>
+  </div>
   <div id="login">
-    <p class="loginTitle">Zaloguj się do naszej aplikacji za pomocą Google</p>
+    <p class="loginTitle">Zaloguj się do naszej aplikacji</p>
     <button type="button"
-            class="btn btn-info btn-lg"
+            class="btn btn-primary
+             btn-lg"
             data-toggle="modal"
             data-target="#myModal">Zaloguj
     </button>
@@ -123,14 +127,11 @@
       </div>
       <div class="modal-body">
         <div id="my-signin2"></div>
-        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        <div class="facebookLogin">
+        <fb:login-button width="200px" size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
         </fb:login-button>
-
-        <div id="status">
         </div>
-        <a href="#" onclick="signOut();">Wyloguj</a>
-
-        <p></p>
+        <div id="status"></div>
       </div>
       <div class="modal-footer">
         <button type="button"
@@ -181,6 +182,7 @@
                   Poleć
                 </label>
               </div>
+
               <div class="col-sm-6 col-xs-6">
                 <label id="mojBut"
                        class="btn btn-primary right"
@@ -228,12 +230,8 @@
                 </form>
                 <div id="alert"></div>
               </section>
-
             </div>
-            <div class="modal-footer">
-
-            </div>
-
+            <div class="modal-footer"></div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->

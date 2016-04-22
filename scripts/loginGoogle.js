@@ -95,25 +95,29 @@ function onSuccess(googleUser) {
 }
 
 function onFailure(error) {
-    console.log(error);
+  console.log(error);
 }
 
-function renderButton() {
+  function renderButton() {
     gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'text-align': 'center',
-        'width': 250,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
+      'scope': 'profile email',
+      'text-align': 'center',
+      'width': 250,
+      'height': 50,
+      'longtitle': true,
+      'theme': 'dark',
+      'onsuccess': function (googleUser) {
+        onSuccess(googleUser);
+        //$log.info('User signed in');
+      },
+      'onfailure': onFailure
     });
-}
+  }
 
-function signOut() {
+  function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-        console.log('User signed out.');
+      console.log('User signed out.');
+      window.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:63342/jfdd2-monuments-app/index.html#"
     });
-}
+  }

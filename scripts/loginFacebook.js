@@ -80,3 +80,19 @@ function testAPI() {
       'Thanks for logging in, ' + response.name + '!';
   });
 }
+
+
+$(document).ready(function(){
+
+  $('#fbLogOut').click(function(e){
+    e.preventDefault();
+    FB.logout(function(response) {
+      // user is now logged out
+      var url = $(this).attr("http://monuments.jfdd2.infoshareaca.nazwa.pl/app/");
+      window.location.href = "http://monuments.jfdd2.infoshareaca.nazwa.pl/app/";
+      location.reload()
+
+    });
+  });
+
+});

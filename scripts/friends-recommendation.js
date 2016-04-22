@@ -44,7 +44,11 @@ function store() {
 $(document).ready(function () {
     $form.submit(function (item) {
         if ($.trim($inputLogin.val()) === "" || $.trim($inputEmail.val()) === "") {
-            alert('Wypełnij wszystkie pola , aby polecenie zabytku było możliwe');
+          alert('Wypełnij wszystkie pola , aby polecenie zabytku było możliwe');
+          return false;
+        }
+          if ($.trim($inputLogin.val().length) > 10) {
+            alert('Podałeś zbyt długie Imie');
             return false;
         }
         store();
