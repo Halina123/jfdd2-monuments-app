@@ -91,13 +91,15 @@ function mainController($scope) {
       }
     });
     console.log(filterSentence);
-    getMonuments(filterSentence + '&filter[fields][id]=true&filter[fields][name]=true&filter[fields][address]=true&filter[fields][image]=true',callBack);
+    getMonuments(filterSentence + '&filter[fields][id]=true&filter[fields][name]=true&filter[fields][address]=true&filter[fields][image]=true', callBack);
 
   }
-function callBack (result){
-  MonumentsFromServer = result;
-  update();
-}
+
+  function callBack(result) {
+    MonumentsFromServer = result;
+    update();
+  }
+
   function update() {
     if ($scope.checkModel.lokalizacja == true) {
       monumentsfilredPosition = [];
@@ -121,8 +123,8 @@ function callBack (result){
   $scope.windowCoords = {};
 
   $scope.onClick = function (marker, eventName, model) {
-getMonuments('&filter[where][id]=' + model.id + '&filter[fields][about]=true', onClickSecondPart);
-    function onClickSecondPart (result){
+    getMonuments('&filter[where][id]=' + model.id + '&filter[fields][about]=true', onClickSecondPart);
+    function onClickSecondPart(result) {
       $scope.windowCoords.latitude = model.address.position.latitude;
       $scope.windowCoords.longitude = model.address.position.longitude;
       $scope.images = model.image;
