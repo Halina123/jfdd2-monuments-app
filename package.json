@@ -5,9 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bower": "^1.7.9",
-    "browser-sync": "^2.11.1"
-  },
-  "devDependencies": {
+    "browser-sync": "^2.11.1",
     "qunitjs": "^1.23.1",
     "blanket": "^1.2.3"
   },
