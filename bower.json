@@ -7,12 +7,14 @@
   ],
   "license": "ISC",
   "homepage": "https://github.com/infoshareacademy/jfdd2-monuments-app",
-   "dependencies": {
+  "dependencies": {
     "angular-bootstrap": "^1.3.1",
     "angular": "^1.5.3",
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.2",
     "angular-animate": "^1.5.3",
-    "angular-google-maps": "^2.3.2"
+    "angular-google-maps": "^2.3.2",
+    "qunit": "^1.23.1",
+    "blanket": "^1.1.7"
   }
 }

@@ -1,7 +1,4 @@
-/**
- * Created by drwal on 22.04.16.
- */
-function mainController($scope,$log) {
+function mainController($scope, $log) {
   function getMonuments(filter, callback) {
     $.ajax({
       type: 'GET',
@@ -9,13 +6,12 @@ function mainController($scope,$log) {
       dataType: 'json',
       success: function (result) {
         callback(result);
-
       }
     });
   }
 
   $scope.randomMarkers = [];
-  $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
+  $scope.nameMonuments = "W tym miejscu wyświetlane będą dane wybranego zabytku.";
   $scope.polecone = recommended;
   $scope.map = {
     center: {
@@ -27,7 +23,7 @@ function mainController($scope,$log) {
       click: function (mapModel, eventName, originalEventArgs) {
         var e = originalEventArgs[0];
         var lat = e.latLng.lat(),
-            lon = e.latLng.lng();
+          lon = e.latLng.lng();
         $scope.map.clickedMarker = {
           id: 0,
           latitude: lat,
@@ -40,16 +36,13 @@ function mainController($scope,$log) {
         $scope.position = position;
         $scope.$apply();
         update();
-        $log.info('zapisano do zmiennej współrzędne klikniętego na mapie miejsca');
-
+        $log.info('Zapisano do zmiennej współrzędne klikniętego na mapie miejsca.');
       }
     },
     clickedMarker: {
       id: 0,
       latitude: 0,
       longitude: 0,
-      //latitude: actualPosition[0],
-      //longitude: actualPosition[1],
       options: {
         animation: 1
       }
@@ -74,7 +67,7 @@ function mainController($scope,$log) {
     MonumentsForDisplay = [];
     monumentsfilredPosition = MonumentsFromServer;
     $scope.show = false;
-    $scope.nameMonuments = "W tym miesjcu wyświetlane będą dane wybranego zabytku.";
+    $scope.nameMonuments = "W tym miejscu wyświetlane będą dane wybranego zabytku.";
     $scope.about = '';
     $scope.images = 'xxx';
     angular.forEach($scope.checkModel, function (value, key) {
@@ -104,8 +97,7 @@ function mainController($scope,$log) {
   function update() {
     if ($scope.checkModel.lokalizacja == true) {
       monumentsfilredPosition = [];
-
-      if (position != undefined){
+      if (position != undefined) {
         MonumentsFromServer.forEach(function (item) {
           markerDistance = getDistanceFromLatLonInKm(item.address.position.latitude, item.address.position.longitude, position[0], position[1]);
           if (markerDistance <= distance) {
@@ -113,7 +105,6 @@ function mainController($scope,$log) {
           }
         });
       }
-
       $scope.randomMarkers = monumentsfilredPosition;
       $scope.$apply();
       return
@@ -126,7 +117,6 @@ function mainController($scope,$log) {
     $scope.show = false;
   };
   $scope.windowCoords = {};
-
   $scope.onClick = function (marker, eventName, model) {
     getMonuments('&filter[where][id]=' + model.id + '&filter[fields][about]=true', onClickSecondPart);
     function onClickSecondPart(result) {
@@ -139,20 +129,19 @@ function mainController($scope,$log) {
       object = model;
       $scope.$apply();
     }
-    $log.info('pobrano z servera szczegóły zabytku')
-  };
 
+    $log.info('Pobrano z serwera szczegóły zabytku.')
+  };
   $scope.loadRecommendations = function () {
     $scope.polecone = recommended;
-    $log.info('załadowano aktualną liste rekomendacje')
+    $log.info('Załadowano aktualną listę rekomendacji.')
   };
   $scope.loadPopular = function () {
     $scope.popularItems = popularItems;
-    $log.info('załadowano aktualną liste popularne')
+    $log.info('Załadowano aktualną listę popularnych.')
   };
   $scope.loadFav = function () {
-    $log.info('załadowano aktualną liste ulubione');
+    $log.info('Załadowano aktualną listę ulubionych.');
     $scope.favourites = favourites;
   }
-
 }
