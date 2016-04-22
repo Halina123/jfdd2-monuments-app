@@ -19,7 +19,7 @@ function store() {
                     "appId": "monuments",
                     "senderId": login,
                     "receiverId": $inputEmail.val(),
-                    "objectType": "REC",
+                    "objectType": object.id,
                     "objectId": object.name,
                     "id": 0
                 };
