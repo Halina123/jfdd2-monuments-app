@@ -88,8 +88,8 @@ $(document).ready(function(){
     e.preventDefault();
     FB.logout(function(response) {
       // user is now logged out
-      var url = $(this).attr("http://localhost:63342/jfdd2-monuments-app/index.html");
-      window.location.href = "http://localhost:63342/jfdd2-monuments-app/index.html";
+      var url = $(this).attr("http://monuments.jfdd2.infoshareaca.nazwa.pl/app/");
+      window.location.href = "http://monuments.jfdd2.infoshareaca.nazwa.pl/app/";
       location.reload()
 
     });
