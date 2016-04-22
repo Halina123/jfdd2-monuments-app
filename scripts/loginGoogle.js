@@ -98,11 +98,11 @@ function onFailure(error) {
   function renderButton() {
     gapi.signin2.render('my-signin2', {
       'scope': 'profile email',
-      'text-align': 'center',
       'width': 250,
       'height': 50,
       'longtitle': true,
       'theme': 'dark',
+
       'onsuccess': function (googleUser) {
         onSuccess(googleUser);
         //$log.info('User signed in');
