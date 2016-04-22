@@ -47,8 +47,8 @@ $(document).ready(function () {
           alert('Wypełnij wszystkie pola , aby polecenie zabytku było możliwe');
           return false;
         }
-          if ($.trim($inputLogin.val().length) > 10) {
-            alert('Podałeś zbyt długie Imie');
+          if ($.trim($inputLogin.val().indexOf('<')) > -1 ) {
+            alert('użyłeś niedozwolonych znaków w imieniu');
             return false;
         }
         store();

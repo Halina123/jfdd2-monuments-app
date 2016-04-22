@@ -40,8 +40,8 @@
 }
 
 .facebookLogin {
-    width:300px;
     margin-top: 20px;
+    display: block;
 }
 
 .powitanie {
