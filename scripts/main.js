@@ -9,7 +9,6 @@ var MonumentsFromServer;
 var filterSentence;
 var popularItems;
 
-
 angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap', 'ngAnimate'])
   .controller('mainController', mainController)
   .controller('ButtonsCtrl', ButtonsCtrl)
@@ -60,6 +59,7 @@ function InfoController($scope) {
 function ModalDemoCtrl($scope, $uibModal, $log) {
   $scope.animationsEnabled = true;
   $scope.open = function (size) {
+    removeMarkers = false;
     $log.info('Otworzono menu filtrowania po lokalizacji.');
     if (statusButtonLocalisation) {
       var modalInstance = $uibModal.open({
@@ -73,13 +73,13 @@ function ModalDemoCtrl($scope, $uibModal, $log) {
           }
         }
       })
-    }
+    } else $scope.$emit('removeMarkers');
   };
 }
 
 function ModalInstanceCtrl($scope, $uibModalInstance) {
   $scope.ok = function () {
-    distance = $scope.howMuch;
+    distance = $scope.howMuch / 1000;
     $uibModalInstance.close();
   };
   $scope.cancel = function () {

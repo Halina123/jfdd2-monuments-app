@@ -1,4 +1,5 @@
 function mainController($scope, $log) {
+  $scope.images = 'xxx';
   function getMonuments(filter, callback) {
     $.ajax({
       type: 'GET',
@@ -9,7 +10,9 @@ function mainController($scope, $log) {
       }
     });
   }
-
+  $scope.$on('removeMarkers', function() {
+    $scope.map.clickedMarker = null
+  });
   $scope.randomMarkers = [];
   $scope.nameMonuments = "W tym miejscu wyświetlane będą dane wybranego zabytku.";
   $scope.polecone = recommended;
@@ -21,28 +24,30 @@ function mainController($scope, $log) {
     zoom: 12,
     events: {
       click: function (mapModel, eventName, originalEventArgs) {
-        var e = originalEventArgs[0];
-        var lat = e.latLng.lat(),
-            lon = e.latLng.lng();
-        $scope.map.clickedMarker = {
-          id: 0,
-          latitude: lat,
-          longitude: lon,
-          options: {
-            animation: 1
-          }
-        };
-        position = [$scope.map.clickedMarker.latitude, $scope.map.clickedMarker.longitude];
-        $scope.position = position;
-        $scope.$apply();
-        update();
-        $log.info('Zapisano do zmiennej współrzędne klikniętego na mapie miejsca.');
+        if (statusButtonLocalisation){
+          var e = originalEventArgs[0];
+          var lat = e.latLng.lat(),
+              lon = e.latLng.lng();
+          $scope.map.clickedMarker = {
+            id: 0,
+            latitude: lat,
+            longitude: lon,
+            options: {
+              animation: 1
+            }
+          };
+          position = [$scope.map.clickedMarker.latitude, $scope.map.clickedMarker.longitude];
+          $scope.position = position;
+          $scope.$apply();
+          update();
+          $log.info('Zapisano do zmiennej współrzędne klikniętego na mapie miejsca.');
+
+        }
+
       }
     },
     clickedMarker: {
       id: 0,
-      latitude: 0,
-      longitude: 0,
       options: {
         animation: 1
       }
@@ -59,7 +64,8 @@ function mainController($scope, $log) {
     monument: false,
     wh: false
   };
-  $scope.$watchCollection('checkModel', checkModel);
+
+   $scope.$watchCollection('checkModel', checkModel);
   function checkModel() {
     var licznik = 0;
     filterSentence = '';
