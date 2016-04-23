@@ -85,7 +85,7 @@
              role="button"
              aria-haspopup="true"
              aria-expanded="false"
-             ng-click="loadPopular()">TOP 3 Zabytków
+             ng-click="loadPopular()">TOP 3 zabytków
             <span class="badge"></span>
             <span class="caret"></span>
           </a>
@@ -94,9 +94,8 @@
               <p>Popularność:&nbsp;{{x.occurrences}}</p></a></li>
           </ul>
         </li>
-        <li><a id="fbLogOut" href="http://localhost:63342/jfdd2-monuments-app/index.html"
-               onclick="FB.logout(),signOut();">Wyloguj</a></li>
-
+        <li><a id="fbLogOut" href="http://monuments.jfdd2.infoshareaca.nazwa.pl" onclick="FB.logout(),signOut();">Wyloguj</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -105,7 +104,6 @@
 <div id="welcomeLogin">
   <div class='powitanie'>
     <h2>Zabytki Gdańska</h2>
-
     <h3>Dokąd dziś pójdziemy?</h3>
   </div>
   <div id="login">
@@ -134,7 +132,8 @@
       <div class="modal-body">
         <div id="my-signin2"></div>
         <div class="facebookLogin">
-          <fb:login-button width="200px" size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
+          <fb:login-button width="200px" style="margin: 0 auto; display: block; text-align: center" size="xlarge"
+                           scope="public_profile,email" onlogin="checkLoginState();">
           </fb:login-button>
         </div>
         <div id="status"></div>
@@ -188,7 +187,6 @@
                   Poleć
                 </label>
               </div>
-
               <div class="col-sm-6 col-xs-6">
                 <label id="mojBut"
                        class="btn btn-primary right"
@@ -217,7 +215,7 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Poleć zabytek znajomemu</h4>
+              <h4 class="modal-title">Poleć znajomemu</h4>
             </div>
             <div class="modal-body">
               <section class="container form-inline">

@@ -31,20 +31,19 @@ function store() {
       }
     }
   });
-
   $form.css({'display': 'none'});
-  var $alert = $('<p>').text('Dziękuję za Twoje polecenie');
+  var $alert = $('<p>').text('Dziękuję za Twoje polecenie!');
   $('#alert').append($alert);
 }
 
 $(document).ready(function () {
   $form.submit(function (item) {
     if ($.trim($inputLogin.val()) === "" || $.trim($inputEmail.val()) === "") {
-      alert('Wypełnij wszystkie pola, aby polecenie było możliwe');
+      alert('Wypełnij wszystkie pola, aby polecenie było możliwe.');
       return false;
     }
     if ($.trim($inputLogin.val().indexOf('<')) > -1) {
-      alert('użyłeś niedozwolonych znaków w imieniu');
+      alert('Użyłeś niedozwolonych znaków w imieniu.');
       return false;
     }
     store();

@@ -49,3 +49,7 @@ html, body {
 .images {
     max-height: 150px;
 }
+
+#my-signin2 > div {
+    margin: 0 auto;
+}

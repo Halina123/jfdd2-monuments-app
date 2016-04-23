@@ -23,7 +23,7 @@ function mainController($scope, $log) {
       click: function (mapModel, eventName, originalEventArgs) {
         var e = originalEventArgs[0];
         var lat = e.latLng.lat(),
-          lon = e.latLng.lng();
+            lon = e.latLng.lng();
         $scope.map.clickedMarker = {
           id: 0,
           latitude: lat,
@@ -36,15 +36,13 @@ function mainController($scope, $log) {
         $scope.position = position;
         $scope.$apply();
         update();
-        $log.info('zapisano do zmiennej współrzędne klikniętego na mapie miejsca');
+        $log.info('Zapisano do zmiennej współrzędne klikniętego na mapie miejsca.');
       }
     },
     clickedMarker: {
       id: 0,
       latitude: 0,
       longitude: 0,
-      //latitude: actualPosition[0],
-      //longitude: actualPosition[1],
       options: {
         animation: 1
       }
@@ -132,18 +130,18 @@ function mainController($scope, $log) {
       $scope.$apply();
     }
 
-    $log.info('pobrano z serwera szczegóły zabytku')
+    $log.info('Pobrano z serwera szczegóły zabytku.')
   };
   $scope.loadRecommendations = function () {
     $scope.polecone = recommended;
-    $log.info('załadowano aktualną listę rekomendacji')
+    $log.info('Załadowano aktualną listę rekomendacji.')
   };
   $scope.loadPopular = function () {
     $scope.popularItems = popularItems;
-    $log.info('załadowano aktualną listę popularnych')
+    $log.info('Załadowano aktualną listę popularnych.')
   };
   $scope.loadFav = function () {
-    $log.info('załadowano aktualną listę ulubionych');
+    $log.info('Załadowano aktualną listę ulubionych.');
     $scope.favourites = favourites;
   }
 }
