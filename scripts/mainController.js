@@ -1,4 +1,8 @@
-function mainController($scope, $log) {
+function mainController($scope, $log, $rootScope) {
+      $rootScope.$on('cancelLocalisation', function (){
+        $scope.checkModel.lokalizacja = false
+    });
+
   $scope.category = [];
   $scope.images = 'xxx';
   function getMonuments(filter, callback) {
@@ -79,9 +83,6 @@ function mainController($scope, $log) {
   };
   $scope.checkModel = {
     lokalizacja: false,
-    church: false,
-    museum: false,
-    monument: false,
     wh: false
   };
 

@@ -77,12 +77,13 @@ function ModalDemoCtrl($scope, $uibModal, $log) {
   };
 }
 
-function ModalInstanceCtrl($scope, $uibModalInstance) {
+function ModalInstanceCtrl($scope, $uibModalInstance, $rootScope) {
   $scope.ok = function () {
     distance = $scope.howMuch / 1000;
     $uibModalInstance.close();
   };
   $scope.cancel = function () {
+    $rootScope.$emit('cancelLocalisation');
     $uibModalInstance.dismiss('cancel');
   };
 }
