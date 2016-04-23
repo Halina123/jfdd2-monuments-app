@@ -1,4 +1,5 @@
 function mainController($scope, $log) {
+  $scope.category = [];
   $scope.images = 'xxx';
   function getMonuments(filter, callback) {
     $.ajax({
@@ -10,8 +11,27 @@ function mainController($scope, $log) {
       }
     });
   }
+
   $scope.$on('removeMarkers', function() {
     $scope.map.clickedMarker = null
+  });
+  $.ajax({
+    type: 'GET',
+    url: URL + '/monuments?filter[fields][type]=true',
+    dataType: 'json',
+    success: function (result) {
+      var accumulator = {};
+      result.forEach(function (item) {
+        accumulator[item.type] = 0;
+      });
+      $scope.category = [];
+      for (var itemName in accumulator) {
+        if (accumulator.hasOwnProperty(itemName)) {
+          $scope.category.push(itemName)
+        }
+      }
+      debugger;
+    }
   });
   $scope.randomMarkers = [];
   $scope.nameMonuments = "W tym miejscu wyświetlane będą dane wybranego zabytku.";

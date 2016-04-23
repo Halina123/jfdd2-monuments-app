@@ -244,17 +244,9 @@
 <div ng-controller="ModalDemoCtrl">
   <div ng-controller="ButtonsCtrl" id="filtr">
     <div class="btn-group btn-group-justified">
-      <label class="btn btn-primary"
-             ng-model="checkModel.church"
-             uib-btn-checkbox>Kościoły
-      </label>
-      <label class="btn btn-primary"
-             ng-model="checkModel.museum"
-             uib-btn-checkbox>Muzea
-      </label>
-      <label class="btn btn-primary"
-             ng-model="checkModel.monument"
-             uib-btn-checkbox>Pomniki
+      <label ng-repeat='(i, val) in category track by $index' class="btn btn-primary"
+             ng-model='checkModel[category[i]]'
+             uib-btn-checkbox>{{val}}
       </label>
       <label class="btn btn-primary"
              ng-model="checkModel.wh"

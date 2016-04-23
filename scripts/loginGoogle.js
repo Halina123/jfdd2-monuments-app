@@ -30,6 +30,7 @@ function checkOnLogin() {
     }
   });
   popular();
+
 }
 
 function popular() {
