@@ -1,4 +1,5 @@
 var login;
+var name;
 function checkOnLogin() {
   $.ajax({
     type: 'GET',
@@ -74,6 +75,7 @@ function onSuccess(googleUser) {
   $('#myModal').hide();
   $('.modal-backdrop').hide();
   login = googleUser.getBasicProfile().getEmail();
+  name = googleUser.getBasicProfile().getName();
   checkOnLogin();
 }
 
