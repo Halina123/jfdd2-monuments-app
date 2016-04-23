@@ -18,17 +18,20 @@
 
 <body ng-controller="mainController">
 <script>
-  window.fbAsyncInit = function() {
+  window.fbAsyncInit = function () {
     FB.init({
-      appId      : '1113880501995933',
-      xfbml      : true,
-      version    : 'v2.6'
+      appId: '1113880501995933',
+      xfbml: true,
+      version: 'v2.6'
     });
   };
-  (function(d, s, id){
+  (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
@@ -71,7 +74,8 @@
             <span class="badge" id="numberOfRecommendation"></span>
             <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li ng-repeat="x in polecone"><a href="#"><b>{{x.what}}</b> <p>polecił: {{x.user}}</p> </a></li>
+            <li ng-repeat="x in polecone"><a href="#"><b>{{x.what}}</b>
+              <p>polecił: {{x.user}}</p></a></li>
           </ul>
         </li>
         <li class="dropdown">
@@ -82,14 +86,16 @@
              aria-haspopup="true"
              aria-expanded="false"
              ng-click="loadPopular()">TOP 3 Zabytków
-            <span class="badge" ></span>
+            <span class="badge"></span>
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li ng-repeat="x in popularItems"><a href="#"><b>{{x.name}}</b><p>Popularność:&nbsp;{{x.occurrences}}</p></a></li>
+            <li ng-repeat="x in popularItems"><a href="#"><b>{{x.name}}</b>
+              <p>Popularność:&nbsp;{{x.occurrences}}</p></a></li>
           </ul>
         </li>
-        <li><a id="fbLogOut" href="http://monuments.jfdd2.infoshareaca.nazwa.pl" onclick="FB.logout(),signOut();">Wyloguj</a></li>
+        <li><a id="fbLogOut" href="http://localhost:63342/jfdd2-monuments-app/index.html"
+               onclick="FB.logout(),signOut();">Wyloguj</a></li>
 
       </ul>
     </div>
@@ -210,12 +216,11 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                      aria-hidden="true">&times;</span></button>
+                aria-hidden="true">&times;</span></button>
               <h4 class="modal-title">Poleć zabytek znajomemu</h4>
             </div>
             <div class="modal-body">
               <section class="container form-inline">
-                <!--<h4>Wypełnij pola</h4>-->
                 <form id="form">
                   <div class="form-group">
                     <label for="loginPolec">Imię</label>
@@ -238,34 +243,33 @@
     </div>
   </div>
 </div>
-  <div ng-controller="ModalDemoCtrl">
-    <div ng-controller="ButtonsCtrl" id="filtr">
-      <div class="btn-group btn-group-justified">
-        <label class="btn btn-primary"
-               ng-model="checkModel.church"
-               uib-btn-checkbox>Kościoły
-        </label>
-        <label class="btn btn-primary"
-               ng-model="checkModel.museum"
-               uib-btn-checkbox>Muzea
-        </label>
-        <label class="btn btn-primary"
-               ng-model="checkModel.monument"
-               uib-btn-checkbox>Pomniki
-        </label>
-        <label class="btn btn-primary"
-               ng-model="checkModel.wh"
-               uib-btn-checkbox>Lista <br>UNESCO
-        </label>
-        <label class="btn btn-primary"
-               ng-click="open()"
-               ng-model="checkModel.lokalizacja"
-               uib-btn-checkbox>Lokalizacja</label>
-      </div>
+<div ng-controller="ModalDemoCtrl">
+  <div ng-controller="ButtonsCtrl" id="filtr">
+    <div class="btn-group btn-group-justified">
+      <label class="btn btn-primary"
+             ng-model="checkModel.church"
+             uib-btn-checkbox>Kościoły
+      </label>
+      <label class="btn btn-primary"
+             ng-model="checkModel.museum"
+             uib-btn-checkbox>Muzea
+      </label>
+      <label class="btn btn-primary"
+             ng-model="checkModel.monument"
+             uib-btn-checkbox>Pomniki
+      </label>
+      <label class="btn btn-primary"
+             ng-model="checkModel.wh"
+             uib-btn-checkbox>Lista <br>UNESCO
+      </label>
+      <label class="btn btn-primary"
+             ng-click="open()"
+             ng-model="checkModel.lokalizacja"
+             uib-btn-checkbox>Lokalizacja</label>
     </div>
   </div>
+</div>
 <script src="scripts/loginGoogle.js"></script>
-<script src="scripts/serverStorage.js"></script>
 <script src="scripts/loginFacebook.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
