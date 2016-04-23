@@ -1,20 +1,20 @@
 <div class="modal-header">
-    <h3 class="modal-title">Opcje filtowania po lokalizacji</h3>
+  <h3 class="modal-title">Opcje filtowania po lokalizacji</h3>
 </div>
 <div class="modal-body">
-    <h4>Wybierz względem czego ma się odbyć filtrowanie:</h4>
-    <div class="form-group">
-        <div class="btn-group btn-group-justified">
-            <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'">Aktualna
-                pozacja</label>
-            <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'">Pozycja wybrana na
-                mapie</label>
-        </div>
-        <label>Zakres filtrowania w kilometrach:</label>
-        <input type="number" class="form-control" ng-model="howMuch" placeholder="np. 3 lub 0.4">
+  <h4>Wybierz względem czego ma się odbyć filtrowanie:</h4>
+  <div class="form-group">
+    <div class="btn-group btn-group-justified">
+      <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Left'">Aktualna
+        pozycja</label>
+      <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'Middle'">Pozycja wybrana na
+        mapie</label>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-    </div>
+    <label>Zakres filtrowania w kilometrach:</label>
+    <input type="number" class="form-control" ng-model="howMuch" placeholder="np. 3 lub 0.4">
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
 </div>
