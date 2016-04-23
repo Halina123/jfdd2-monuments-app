@@ -23,7 +23,7 @@ function mainController($scope, $log) {
       click: function (mapModel, eventName, originalEventArgs) {
         var e = originalEventArgs[0];
         var lat = e.latLng.lat(),
-          lon = e.latLng.lng();
+            lon = e.latLng.lng();
         $scope.map.clickedMarker = {
           id: 0,
           latitude: lat,
