@@ -1,15 +1,23 @@
 function mainController($scope, $log, $rootScope) {
-      $rootScope.$on('cancelLocalisation', function (){
-        $scope.checkModel.lokalizacja = false
-    });
-      $rootScope.$on('updateActualPosition', function (event, actPos){
-        debugger;
-        position = actPos;
-        $scope.map.clickedMarker.latitude = actPos[0];
-        $scope.map.clickedMarker.longitude = actPos[1];
-        $scope.$apply();
-        update();
-    });
+  $rootScope.$on('cancelLocalisation', function () {
+    $scope.checkModel.lokalizacja = false
+  });
+  $rootScope.$on('updateActualPosition', function (event, actPos) {
+    debugger;
+    position = actPos;
+    $scope.map.clickedMarker = {
+      id: 0,
+      latitude: actPos[0],
+      longitude: actPos[1],
+      options: {
+        animation: 1
+      }
+    };
+
+
+    $scope.$apply();
+    update();
+  });
 
 
   $scope.category = [];
@@ -25,8 +33,13 @@ function mainController($scope, $log, $rootScope) {
     });
   }
 
-  $scope.$on('removeMarkers', function() {
+  $scope.$on('removeMarkers', function () {
+    $scope.map.clickedMarker = null;
+    position = []
+  });
+  $rootScope.$on('removeMarkers', function () {
     $scope.map.clickedMarker = null
+    position = [];
   });
   $.ajax({
     type: 'GET',
@@ -56,10 +69,10 @@ function mainController($scope, $log, $rootScope) {
     zoom: 12,
     events: {
       click: function (mapModel, eventName, originalEventArgs) {
-        if (statusButtonLocalisation){
+        if (statusButtonLocalisation) {
           var e = originalEventArgs[0];
           var lat = e.latLng.lat(),
-              lon = e.latLng.lng();
+            lon = e.latLng.lng();
           $scope.map.clickedMarker = {
             id: 0,
             latitude: lat,
@@ -93,7 +106,7 @@ function mainController($scope, $log, $rootScope) {
     wh: false
   };
 
-   $scope.$watchCollection('checkModel', checkModel);
+  $scope.$watchCollection('checkModel', checkModel);
   function checkModel() {
     var licznik = 0;
     filterSentence = '';
@@ -129,7 +142,8 @@ function mainController($scope, $log, $rootScope) {
   }
 
   function update() {
-    if ($scope.checkModel.lokalizacja == true) {
+    debugger;
+    if (distance > 0) {
       monumentsfilredPosition = [];
       if (position != undefined) {
         MonumentsFromServer.forEach(function (item) {

@@ -8,7 +8,6 @@ var URL = 'http://isa-api-sl.herokuapp.com/api';
 var MonumentsFromServer;
 var filterSentence;
 var popularItems;
-
 angular.module('Workshop', ['uiGmapgoogle-maps', 'ui.bootstrap', 'ngAnimate'])
   .controller('mainController', mainController)
   .controller('ButtonsCtrl', ButtonsCtrl)
@@ -73,13 +72,33 @@ function ModalDemoCtrl($scope, $uibModal, $log) {
           }
         }
       })
-    } else $scope.$emit('removeMarkers');
+    } else {
+      $scope.$emit('removeMarkers');
+      distance = 0;
+    }
   };
 }
 
 function ModalInstanceCtrl($scope, $uibModalInstance, $rootScope) {
   $scope.ok = function () {
     distance = $scope.howMuch / 1000;
+    if ($scope.radioModel == 'Left') {
+      debugger;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error, {
+          maximumAge: 60000,
+          timeout: 5000,
+          enableHighAccuracy: true
+        });
+      }
+      function success(pos) {
+        console.log(success);
+        $rootScope.$emit('updateActualPosition', [pos.coords.latitude, pos.coords.longitude]);
+      }
+      function error() {
+        conosle.log('error')
+      }
+    }
     $uibModalInstance.close();
   };
   $scope.cancel = function () {
@@ -87,21 +106,6 @@ function ModalInstanceCtrl($scope, $uibModalInstance, $rootScope) {
     $uibModalInstance.dismiss('cancel');
     $rootScope.$emit('removeMarkers');
   };
-  $scope.actualPosition = function () {
-    distance = $scope.howMuch / 1000;
-    var actPos;
-    debugger;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error,{maximumAge:60000, timeout:5000, enableHighAccuracy:true});
-    }
-    function success (pos){
-      console.log(success);
-      $rootScope.$emit('updateActualPosition', [pos.coords.latitude, pos.coords.longitude]);
-    }
-    function error (){
-      conosle.log('error')
-    }
-  }
 }
 
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
