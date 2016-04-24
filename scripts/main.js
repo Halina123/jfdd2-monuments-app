@@ -85,7 +85,23 @@ function ModalInstanceCtrl($scope, $uibModalInstance, $rootScope) {
   $scope.cancel = function () {
     $rootScope.$emit('cancelLocalisation');
     $uibModalInstance.dismiss('cancel');
+    $rootScope.$emit('removeMarkers');
   };
+  $scope.actualPosition = function () {
+    distance = $scope.howMuch / 1000;
+    var actPos;
+    debugger;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error,{maximumAge:60000, timeout:5000, enableHighAccuracy:true});
+    }
+    function success (pos){
+      console.log(success);
+      $rootScope.$emit('updateActualPosition', [pos.coords.latitude, pos.coords.longitude]);
+    }
+    function error (){
+      conosle.log('error')
+    }
+  }
 }
 
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {

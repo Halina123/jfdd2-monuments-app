@@ -2,6 +2,15 @@ function mainController($scope, $log, $rootScope) {
       $rootScope.$on('cancelLocalisation', function (){
         $scope.checkModel.lokalizacja = false
     });
+      $rootScope.$on('updateActualPosition', function (event, actPos){
+        debugger;
+        position = actPos;
+        $scope.map.clickedMarker.latitude = actPos[0];
+        $scope.map.clickedMarker.longitude = actPos[1];
+        $scope.$apply();
+        update();
+    });
+
 
   $scope.category = [];
   $scope.images = 'xxx';
@@ -34,7 +43,6 @@ function mainController($scope, $log, $rootScope) {
           $scope.category.push(itemName)
         }
       }
-      debugger;
     }
   });
   $scope.randomMarkers = [];
@@ -61,7 +69,6 @@ function mainController($scope, $log, $rootScope) {
             }
           };
           position = [$scope.map.clickedMarker.latitude, $scope.map.clickedMarker.longitude];
-          $scope.position = position;
           $scope.$apply();
           update();
           $log.info('Zapisano do zmiennej współrzędne klikniętego na mapie miejsca.');
@@ -172,3 +179,4 @@ function mainController($scope, $log, $rootScope) {
     $scope.favourites = favourites;
   }
 }
+
