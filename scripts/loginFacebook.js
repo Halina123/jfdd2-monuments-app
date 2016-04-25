@@ -27,7 +27,7 @@ function statusChangeCallback(response) {
 // Button.  See the onlogin handler attached to it in the sample
 // code below.
 function checkLoginState() {
-  FB.getLoginStatus(function (response) {z
+  FB.getLoginStatus(function (response) {
     statusChangeCallback(response);
   });
 }
