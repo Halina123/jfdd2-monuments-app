@@ -1,4 +1,5 @@
 var login;
+var name;
 function checkOnLogin() {
   $.ajax({
     type: 'GET',
@@ -29,6 +30,7 @@ function checkOnLogin() {
     }
   });
   popular();
+
 }
 
 function popular() {
@@ -74,6 +76,7 @@ function onSuccess(googleUser) {
   $('#myModal').hide();
   $('.modal-backdrop').hide();
   login = googleUser.getBasicProfile().getEmail();
+  name = googleUser.getBasicProfile().getName();
   checkOnLogin();
 }
 

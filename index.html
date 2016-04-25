@@ -154,7 +154,7 @@
       <h3>{{nameMonuments}}</h3>
       {{about}}<br><br>
       <img class="images"
-           src="images/{{images}}.jpg"
+           ng-src="images/{{images}}.jpg"
            alt="">
     </div>
     <div class="col-md-8">
@@ -171,7 +171,7 @@
           <div class="infoWind"
                ng-controller="InfoController">
             <div class="hidden-xs col-sm-5  hidden-md hidden-lg">
-              <img src="images/{{images}}.jpg"
+              <img ng-src="images/{{images}}.jpg"
                    alt="">
             </div>
             <div class="col-sm-7 col-md-12">
@@ -244,17 +244,9 @@
 <div ng-controller="ModalDemoCtrl">
   <div ng-controller="ButtonsCtrl" id="filtr">
     <div class="btn-group btn-group-justified">
-      <label class="btn btn-primary"
-             ng-model="checkModel.church"
-             uib-btn-checkbox>Kościoły
-      </label>
-      <label class="btn btn-primary"
-             ng-model="checkModel.museum"
-             uib-btn-checkbox>Muzea
-      </label>
-      <label class="btn btn-primary"
-             ng-model="checkModel.monument"
-             uib-btn-checkbox>Pomniki
+      <label ng-repeat='(i, val) in category track by $index' class="btn btn-primary"
+             ng-model='checkModel[category[i]]'
+             uib-btn-checkbox>{{val}}
       </label>
       <label class="btn btn-primary"
              ng-model="checkModel.wh"
@@ -267,12 +259,12 @@
     </div>
   </div>
 </div>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="scripts/loginGoogle.js"></script>
 <script src="scripts/loginFacebook.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src='bower_components/lodash/dist/lodash.min.js'></script>

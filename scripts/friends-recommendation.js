@@ -13,7 +13,7 @@ function store() {
       if (result.length === 0) {
         toAddRec = {
           "appId": "monuments",
-          "senderId": login,
+          "senderId": name + ' (' + login + ')',
           "receiverId": $inputEmail.val(),
           "objectType": object.id,
           "objectId": object.name,

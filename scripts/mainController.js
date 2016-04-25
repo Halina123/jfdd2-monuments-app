@@ -1,4 +1,27 @@
-function mainController($scope, $log) {
+function mainController($scope, $log, $rootScope) {
+  $rootScope.$on('cancelLocalisation', function () {
+    $scope.checkModel.lokalizacja = false
+  });
+  $rootScope.$on('updateActualPosition', function (event, actPos) {
+    debugger;
+    position = actPos;
+    $scope.map.clickedMarker = {
+      id: 0,
+      latitude: actPos[0],
+      longitude: actPos[1],
+      options: {
+        animation: 1
+      }
+    };
+
+
+    $scope.$apply();
+    update();
+  });
+
+
+  $scope.category = [];
+  $scope.images = 'xxx';
   function getMonuments(filter, callback) {
     $.ajax({
       type: 'GET',
@@ -10,6 +33,31 @@ function mainController($scope, $log) {
     });
   }
 
+  $scope.$on('removeMarkers', function () {
+    $scope.map.clickedMarker = null;
+    position = []
+  });
+  $rootScope.$on('removeMarkers', function () {
+    $scope.map.clickedMarker = null
+    position = [];
+  });
+  $.ajax({
+    type: 'GET',
+    url: URL + '/monuments?filter[fields][type]=true',
+    dataType: 'json',
+    success: function (result) {
+      var accumulator = {};
+      result.forEach(function (item) {
+        accumulator[item.type] = 0;
+      });
+      $scope.category = [];
+      for (var itemName in accumulator) {
+        if (accumulator.hasOwnProperty(itemName)) {
+          $scope.category.push(itemName)
+        }
+      }
+    }
+  });
   $scope.randomMarkers = [];
   $scope.nameMonuments = "W tym miejscu wyświetlane będą dane wybranego zabytku.";
   $scope.polecone = recommended;
@@ -21,28 +69,29 @@ function mainController($scope, $log) {
     zoom: 12,
     events: {
       click: function (mapModel, eventName, originalEventArgs) {
-        var e = originalEventArgs[0];
-        var lat = e.latLng.lat(),
+        if (statusButtonLocalisation) {
+          var e = originalEventArgs[0];
+          var lat = e.latLng.lat(),
             lon = e.latLng.lng();
-        $scope.map.clickedMarker = {
-          id: 0,
-          latitude: lat,
-          longitude: lon,
-          options: {
-            animation: 1
-          }
-        };
-        position = [$scope.map.clickedMarker.latitude, $scope.map.clickedMarker.longitude];
-        $scope.position = position;
-        $scope.$apply();
-        update();
-        $log.info('Zapisano do zmiennej współrzędne klikniętego na mapie miejsca.');
+          $scope.map.clickedMarker = {
+            id: 0,
+            latitude: lat,
+            longitude: lon,
+            options: {
+              animation: 1
+            }
+          };
+          position = [$scope.map.clickedMarker.latitude, $scope.map.clickedMarker.longitude];
+          $scope.$apply();
+          update();
+          $log.info('Zapisano do zmiennej współrzędne klikniętego na mapie miejsca.');
+
+        }
+
       }
     },
     clickedMarker: {
       id: 0,
-      latitude: 0,
-      longitude: 0,
       options: {
         animation: 1
       }
@@ -54,11 +103,9 @@ function mainController($scope, $log) {
   };
   $scope.checkModel = {
     lokalizacja: false,
-    church: false,
-    museum: false,
-    monument: false,
     wh: false
   };
+
   $scope.$watchCollection('checkModel', checkModel);
   function checkModel() {
     var licznik = 0;
@@ -95,7 +142,8 @@ function mainController($scope, $log) {
   }
 
   function update() {
-    if ($scope.checkModel.lokalizacja == true) {
+    debugger;
+    if (distance > 0) {
       monumentsfilredPosition = [];
       if (position != undefined) {
         MonumentsFromServer.forEach(function (item) {
@@ -145,3 +193,4 @@ function mainController($scope, $log) {
     $scope.favourites = favourites;
   }
 }
+
